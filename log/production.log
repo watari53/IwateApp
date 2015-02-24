@@ -1,0 +1,1524 @@
+I, [2015-02-24T21:47:56.546673 #3188]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 127.0.0.1 at 2015-02-24 21:47:56 +0900
+I, [2015-02-24T21:47:56.560339 #3188]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T21:47:56.560411 #3188]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-24T21:47:56.781276 #3188]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (0.6ms)
+I, [2015-02-24T21:47:56.781529 #3188]  INFO -- : Completed 500 Internal Server Error in 221ms
+F, [2015-02-24T21:47:56.784979 #3188] FATAL -- : 
+ActionView::Template::Error (Your template was not saved as valid UTF-8. Please either specify UTF-8 as the encoding for your template in your text editor, or mark the template with its encoding by inserting the following as the first line of the template:
+
+# encoding: <name of correct encoding>.
+
+The source of your template was:
+
+<link type="text/css" rel="stylesheet" href="/assets/font-awesome-4.2.0/css/font-awesome.min.css">
+
+<div id = "gallery">
+<div class="container_gallery">
+<div class="main">
+
+<% near_section_number = 10 %>
+<% tag_section_number = 10 %>
+<% scene_section_number = 10 %>
+
+<% @near_list_count = 0 %>
+<% @near_page_number = 1%>
+<div class="hello_world">
+   <div data-pws-tab="anynameyouwant1" data-pws-tab-name="周辺検索" data-pws-tab-icon="fa fa-map-marker" >
+     <div id = "near_list">
+     <div id="paginationdemo2" class="demo">
+       <% if @selected_near_page == @near_page_number %>
+         <div id ="n1" class="nowview" style ="">
+       <% else %>
+         <div id ="n1" class="" style ="display:none;">
+       <% end %>
+         <% @near_albums_title_list.each {|album_id, album_title| %>
+          <% if @selected_word == album_title %>
+            <%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %>
+          <% else %>
+            <%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %>
+          <% end %>
+         <% @near_list_count = @near_list_count + 1%>
+       <% if @near_list_count % near_section_number == 0 %>
+         </div>
+         <%@near_page_number = @near_page_number + 1 %>
+         <% if @selected_scene_page == @near_page_number %>
+           <div id="n<%=@near_page_number%>" class="nowview" style="">
+         <% else %>
+           <div id="n<%=@near_page_number%>" class="" style="display:none;">
+         <% end %>
+       <% end %>
+       <% } %>
+     </div>
+     <% if @near_albums_title_list.size > near_section_number%>
+       <div id="demo2"></div>
+     <% end %>
+     </div>
+     </div>
+   </div>
+
+   <% @tag_list_count = 0 %>
+   <% @tag_page_number = 1%>
+   <div data-pws-tab="anynameyouwant2" data-pws-tab-name="タグ検索" data-pws-tab-icon="fa fa-tag">
+     <div id = "tag_list">
+       <div id="paginationdemo" class="demo">
+       <% if @selected_tag_page == @tag_page_number %>
+         <div id ="p1" class="current" style ="">
+       <% else %>
+         <div id ="p1" class="" style ="display:none;">
+       <% end %>
+         <% @tags.each do |tag| %>
+          <% if @selected_word == tag.text %>
+           <%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %>
+          <% else %>
+           <%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %>
+          <% end %>
+         <% @tag_list_count = @tag_list_count + 1%>
+       <% if @tag_list_count % tag_section_number == 0 %>
+         </div>
+         <%@tag_page_number = @tag_page_number + 1 %>
+         <% if @selected_tag_page == @tag_page_number %>
+           <div id="p<%=@tag_page_number%>" class="current" style="">
+         <% else %>
+           <div id="p<%=@tag_page_number%>" class="" style="display:none;">
+         <% end %>
+       <% end %>
+     <% end %>
+   </div>
+        <% if @tags.size > tag_section_number %>
+          <div id="demo1"></div>
+        <% end %>
+       </div>
+     </div>
+   </div>
+
+   <% @scene_list_count = 0 %>
+   <% @scene_page_number = 1%>
+   <div data-pws-tab="anynameyouwant3" data-pws-tab-name="場面検索" data-pws-tab-icon="fa fa-home">
+     <div id = "scene_list">
+       <div id="paginationdemo3" class="demo">
+         <% if @selected_scene_page == @scene_page_number %>
+           <div id ="s1" class="now" style ="">
+         <% else %>
+           <div id ="s1" class="" style ="display:none;">
+         <%end%>
+        <% @scenes.each do |scene| %>
+          <% if @selected_word == scene["sceneJP"] %>
+            <%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-primary"} %>
+          <% else %>
+            <%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-info"} %>
+          <% end %>
+          <% @scene_list_count = @scene_list_count + 1%>
+       <% if @scene_list_count % scene_section_number == 0 %>
+         </div>
+         <%@scene_page_number = @scene_page_number + 1 %>
+         <% if @selected_scene_page == @scene_page_number %>
+           <div id="s<%=@scene_page_number%>" class="now" style="">
+         <% else %>
+           <div id ="s<%=@scene_page_number%>" class="" style ="display:none;">
+         <%end%>
+
+       <% end %>
+     <% end %>
+     </div>
+     <% if @scenes.size > scene_section_number%>
+       <div id="demo3"></div>
+     <% end %>
+     </div>
+     </div>
+   </div>
+</div>
+
+<%= render partial:"pictures", locals:{pictures:@pictures,current_lat:@current_lat,current_lon:@current_lon} %>
+
+<div class="pagetop"><a href="#gallery">��&nbsp;PAGETOP</a></div>
+
+<link type="text/css" rel="stylesheet" href="/assets/jquery.pwstabs.css">
+<script src="/assets/jquery.pwstabs-1.2.0.js"></script>
+<script>
+jQuery(document).ready(function($){
+   $('.hello_world').pwstabs({
+   effect: 'slideright',
+   responsive: true,
+   containerWidth: '100%',
+   theme: 'pws_theme_green',
+   defaultTab: <%= @selected_tab %>});
+});
+</script>
+
+<script src="/assets/jquery.paginate.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="/assets/paginate.css">
+<script>
+$(function() {
+  $("#demo1").paginate({
+count : <%=@tags.size / tag_section_number + 1 %>,
+  start : 1,
+  display : 5,
+  border  : false,
+  text_color : '#888',
+  background_color : '#EEE',
+  text_hover_color : 'black',
+  background_hover_color : '#CFCFCF',
+  onChange: function(page){
+  $('.current','#paginationdemo').removeClass('current').hide();
+  //$('.current','#paginationdemo').attr('class','').hide();
+  $('#p'+page).addClass('current').show();
+  //$('#p'+page).attr('class', 'current').show();
+  }
+  });
+});
+</script>
+
+<script>
+$(function() {
+  $("#demo2").paginate({
+count : <%=@near_albums_title_list.size / near_section_number +1 %>,
+  start : 1,
+  display : 5,
+  border  : false,
+  text_color : '#888',
+  background_color : '#EEE',
+  text_hover_color : 'black',
+  background_hover_color : '#CFCFCF',
+  onChange: function(page){
+  $('.nowview','#paginationdemo2').removeClass('nowview').hide();
+  $('#n'+page).addClass('nowview').show();
+  }
+  });
+});
+</script>
+
+<script>
+$(function() {
+  $("#demo3").paginate({
+count : <%=@scenes.size / scene_section_number + 1 %>,
+  start : 1,
+  display : 5,
+  border  : false,
+  text_color : '#888',
+  background_color : '#EEE',
+  text_hover_color : 'black',
+  background_hover_color : '#CFCFCF',
+  onChange: function(page){
+  $('.now','#paginationdemo3').removeClass('now').hide();
+  $('#s'+page).addClass('now').show();
+  }
+  });
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+  $(document).ready(function() {
+  $('a[@href^="#"]').click(function(){
+    $($(this).attr("href")).ScrollTo(1000,'easeout');
+    return false;
+    });
+  });
+</script>
+
+</div>
+</div>
+</div>
+):
+  actionview (4.1.8) lib/action_view/template/handlers/erb.rb:140:in `valid_encoding'
+  actionview (4.1.8) lib/action_view/template/handlers/erb.rb:114:in `call'
+  actionview (4.1.8) lib/action_view/template.rb:270:in `compile'
+  actionview (4.1.8) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.1.8) lib/active_support/notifications.rb:161:in `instrument'
+  actionview (4.1.8) lib/action_view/template.rb:339:in `instrument'
+  actionview (4.1.8) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.1.8) lib/action_view/template.rb:232:in `synchronize'
+  actionview (4.1.8) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.1.8) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.1.8) lib/active_support/notifications.rb:161:in `instrument'
+  actionview (4.1.8) lib/action_view/template.rb:339:in `instrument'
+  actionview (4.1.8) lib/action_view/template.rb:143:in `render'
+  actionview (4.1.8) lib/action_view/renderer/template_renderer.rb:55:in `block (2 levels) in render_template'
+  actionview (4.1.8) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `instrument'
+  actionview (4.1.8) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionview (4.1.8) lib/action_view/renderer/template_renderer.rb:54:in `block in render_template'
+  actionview (4.1.8) lib/action_view/renderer/template_renderer.rb:62:in `render_with_layout'
+  actionview (4.1.8) lib/action_view/renderer/template_renderer.rb:53:in `render_template'
+  actionview (4.1.8) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionview (4.1.8) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.1.8) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.1.8) lib/action_view/rendering.rb:99:in `_render_template'
+  actionpack (4.1.8) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.1.8) lib/action_view/rendering.rb:82:in `render_to_body'
+  actionpack (4.1.8) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.1.8) lib/action_controller/metal/renderers.rb:32:in `render_to_body'
+  actionpack (4.1.8) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.1.8) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.1.8) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.1.8) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.1.8) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.1.8) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.1.8) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:86:in `call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.8) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.8) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.8) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T21:48:48.852566 #3238]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 127.0.0.1 at 2015-02-24 21:48:48 +0900
+I, [2015-02-24T21:48:48.863377 #3238]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T21:48:48.863517 #3238]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-24T21:48:49.096721 #3238]  INFO -- :   Rendered gallery/_pictures.html.erb (2.5ms)
+I, [2015-02-24T21:48:49.097021 #3238]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (25.1ms)
+I, [2015-02-24T21:48:49.113012 #3238]  INFO -- : Completed 200 OK in 249ms (Views: 52.9ms | ActiveRecord: 44.6ms)
+I, [2015-02-24T21:48:56.044209 #3238]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=2&scene_name=Desert" for 127.0.0.1 at 2015-02-24 21:48:56 +0900
+I, [2015-02-24T21:48:56.045305 #3238]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T21:48:56.045388 #3238]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"2", "scene_name"=>"Desert"}
+I, [2015-02-24T21:48:56.193753 #3238]  INFO -- :   Rendered gallery/_pictures.html.erb (1.3ms)
+I, [2015-02-24T21:48:56.194032 #3238]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (9.3ms)
+I, [2015-02-24T21:48:56.196563 #3238]  INFO -- : Completed 200 OK in 151ms (Views: 12.2ms | ActiveRecord: 41.7ms)
+I, [2015-02-24T21:50:10.580667 #3306]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=2&scene_name=Desert" for 127.0.0.1 at 2015-02-24 21:50:10 +0900
+I, [2015-02-24T21:50:10.593786 #3306]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T21:50:10.593859 #3306]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"2", "scene_name"=>"Desert"}
+I, [2015-02-24T21:50:10.843317 #3306]  INFO -- :   Rendered gallery/_pictures.html.erb (2.8ms)
+I, [2015-02-24T21:50:10.843477 #3306]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (23.0ms)
+I, [2015-02-24T21:50:10.853266 #3306]  INFO -- : Completed 200 OK in 259ms (Views: 40.1ms | ActiveRecord: 41.4ms)
+I, [2015-02-24T21:51:11.487748 #3306]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=2&scene_name=Snow" for 127.0.0.1 at 2015-02-24 21:51:11 +0900
+I, [2015-02-24T21:51:11.489147 #3306]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T21:51:11.489194 #3306]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"2", "scene_name"=>"Snow"}
+I, [2015-02-24T21:51:11.611406 #3306]  INFO -- :   Rendered gallery/_pictures.html.erb (1.3ms)
+I, [2015-02-24T21:51:11.611547 #3306]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (7.8ms)
+I, [2015-02-24T21:51:11.613162 #3306]  INFO -- : Completed 200 OK in 124ms (Views: 9.7ms | ActiveRecord: 36.9ms)
+I, [2015-02-24T22:18:21.577756 #4554]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=2&scene_name=Snow" for 127.0.0.1 at 2015-02-24 22:18:21 +0900
+I, [2015-02-24T22:18:21.609133 #4554]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T22:18:21.609224 #4554]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"2", "scene_name"=>"Snow"}
+I, [2015-02-24T22:18:22.031813 #4554]  INFO -- :   Rendered gallery/_pictures.html.erb (3.0ms)
+I, [2015-02-24T22:18:22.031965 #4554]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (19.5ms)
+I, [2015-02-24T22:18:22.042691 #4554]  INFO -- : Completed 200 OK in 433ms (Views: 46.5ms | ActiveRecord: 204.4ms)
+I, [2015-02-24T22:19:56.507950 #4647]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=2&scene_name=Snow" for 127.0.0.1 at 2015-02-24 22:19:56 +0900
+I, [2015-02-24T22:19:56.518819 #4647]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T22:19:56.518892 #4647]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"2", "scene_name"=>"Snow"}
+I, [2015-02-24T22:19:56.726633 #4647]  INFO -- :   Rendered gallery/_pictures.html.erb (2.9ms)
+I, [2015-02-24T22:19:56.726936 #4647]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (18.6ms)
+I, [2015-02-24T22:19:56.736412 #4647]  INFO -- : Completed 200 OK in 217ms (Views: 35.6ms | ActiveRecord: 36.2ms)
+I, [2015-02-24T23:02:03.662933 #6650]  INFO -- : Started GET "/gallery/home" for 127.0.0.1 at 2015-02-24 23:02:03 +0900
+I, [2015-02-24T23:02:03.695664 #6650]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:02:04.089715 #6650]  INFO -- :   Rendered gallery/_pictures.html.erb (2.1ms)
+I, [2015-02-24T23:02:04.089889 #6650]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (18.0ms)
+I, [2015-02-24T23:02:04.105528 #6650]  INFO -- : Completed 200 OK in 410ms (Views: 50.2ms | ActiveRecord: 213.0ms)
+I, [2015-02-24T23:02:06.950114 #6650]  INFO -- : Started GET "/top_pages/home" for 127.0.0.1 at 2015-02-24 23:02:06 +0900
+I, [2015-02-24T23:02:06.953719 #6650]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-24T23:02:06.960084 #6650]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (1.8ms)
+I, [2015-02-24T23:02:06.961776 #6650]  INFO -- : Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.0ms)
+I, [2015-02-24T23:02:10.314174 #6650]  INFO -- : Started GET "/map/index" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+I, [2015-02-24T23:02:10.318454 #6650]  INFO -- : Processing by MapController#index as HTML
+I, [2015-02-24T23:02:10.349504 #6650]  INFO -- :   Rendered map/index.html.erb within layouts/application (1.5ms)
+I, [2015-02-24T23:02:10.353892 #6650]  INFO -- : Completed 200 OK in 35ms (Views: 20.9ms | ActiveRecord: 1.2ms)
+I, [2015-02-24T23:02:10.692515 #6650]  INFO -- : Started GET "/images/characters/higashi.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.694379 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/higashi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:10.706545 #6650]  INFO -- : Started GET "/images/characters/tyuo.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.708521 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/tyuo.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:10.710608 #6650]  INFO -- : Started GET "/images/characters/hakata.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.712905 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/hakata.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:10.717711 #6650]  INFO -- : Started GET "/images/characters/minami.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.718956 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/minami.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:10.719908 #6650]  INFO -- : Started GET "/images/characters/nishi.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.721387 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/nishi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:10.723017 #6650]  INFO -- : Started GET "/images/characters/jonan.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.725093 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/jonan.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:10.726164 #6650]  INFO -- : Started GET "/images/characters/sawara.jpg" for 127.0.0.1 at 2015-02-24 23:02:10 +0900
+F, [2015-02-24T23:02:10.727581 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/sawara.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:27.532252 #6650]  INFO -- : Started GET "/map/lists?area=%E8%A5%BF%E5%8C%BA&lat=35.590992199999995&lng=139.64378929999998" for 127.0.0.1 at 2015-02-24 23:02:27 +0900
+I, [2015-02-24T23:02:27.542311 #6650]  INFO -- : Processing by MapController#lists as HTML
+I, [2015-02-24T23:02:27.542501 #6650]  INFO -- :   Parameters: {"area"=>"西区", "lat"=>"35.590992199999995", "lng"=>"139.64378929999998"}
+I, [2015-02-24T23:02:27.707314 #6650]  INFO -- :   Rendered map/lists.html.erb within layouts/application (1.9ms)
+I, [2015-02-24T23:02:27.710345 #6650]  INFO -- : Completed 200 OK in 168ms (Views: 7.7ms | ActiveRecord: 152.8ms)
+I, [2015-02-24T23:02:31.542202 #6650]  INFO -- : Started GET "/images/characters/hakata.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.544162 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/hakata.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:31.560045 #6650]  INFO -- : Started GET "/images/characters/tyuo.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.562054 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/tyuo.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:31.564117 #6650]  INFO -- : Started GET "/images/characters/jonan.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.567174 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/jonan.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:31.576424 #6650]  INFO -- : Started GET "/images/characters/nishi.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.578491 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/nishi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:31.583737 #6650]  INFO -- : Started GET "/images/characters/minami.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.585761 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/minami.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:31.587693 #6650]  INFO -- : Started GET "/images/characters/sawara.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.589631 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/sawara.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:02:31.595423 #6650]  INFO -- : Started GET "/images/characters/higashi.jpg" for 127.0.0.1 at 2015-02-24 23:02:31 +0900
+F, [2015-02-24T23:02:31.597228 #6650] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/higashi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/SuehiroYoshitaka/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:04:07.235654 #6650]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 127.0.0.1 at 2015-02-24 23:04:07 +0900
+I, [2015-02-24T23:04:07.237281 #6650]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:04:07.237372 #6650]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-24T23:04:07.533468 #6650]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-24T23:04:07.533597 #6650]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (6.2ms)
+I, [2015-02-24T23:04:07.535266 #6650]  INFO -- : Completed 200 OK in 298ms (Views: 8.1ms | ActiveRecord: 225.3ms)
+I, [2015-02-24T23:04:09.918872 #6650]  INFO -- : Started GET "/top_pages/home" for 127.0.0.1 at 2015-02-24 23:04:09 +0900
+I, [2015-02-24T23:04:09.919598 #6650]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-24T23:04:09.921446 #6650]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (1.3ms)
+I, [2015-02-24T23:04:09.922975 #6650]  INFO -- : Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+I, [2015-02-24T23:04:21.008482 #6650]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 127.0.0.1 at 2015-02-24 23:04:21 +0900
+I, [2015-02-24T23:04:21.009401 #6650]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:04:21.009464 #6650]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-24T23:04:21.111469 #6650]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-24T23:04:21.111613 #6650]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (7.1ms)
+I, [2015-02-24T23:04:21.113186 #6650]  INFO -- : Completed 200 OK in 104ms (Views: 8.9ms | ActiveRecord: 35.4ms)
+I, [2015-02-24T23:04:30.886800 #6650]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Urban" for 127.0.0.1 at 2015-02-24 23:04:30 +0900
+I, [2015-02-24T23:04:30.887923 #6650]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:04:30.888044 #6650]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Urban"}
+I, [2015-02-24T23:04:31.063531 #6650]  INFO -- :   Rendered gallery/_pictures.html.erb (8.4ms)
+I, [2015-02-24T23:04:31.063681 #6650]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (15.1ms)
+I, [2015-02-24T23:04:31.070411 #6650]  INFO -- : Completed 200 OK in 182ms (Views: 22.0ms | ActiveRecord: 47.2ms)
+I, [2015-02-24T23:22:21.189872 #20260]  INFO -- : Started GET "/" for 127.0.0.1 at 2015-02-24 23:22:21 +0900
+F, [2015-02-24T23:22:21.263836 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:28.368490 #20260]  INFO -- : Started GET "/top_page/home" for 127.0.0.1 at 2015-02-24 23:22:28 +0900
+F, [2015-02-24T23:22:28.370385 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/top_page/home"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:42.195985 #20260]  INFO -- : Started GET "/top_pages/home" for 127.0.0.1 at 2015-02-24 23:22:42 +0900
+I, [2015-02-24T23:22:42.197929 #20260]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-24T23:22:42.525724 #20260]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (2.4ms)
+I, [2015-02-24T23:22:42.690663 #20260]  INFO -- : Completed 200 OK in 493ms (Views: 492.3ms | ActiveRecord: 0.0ms)
+I, [2015-02-24T23:22:48.286789 #20260]  INFO -- : Started GET "/map/index" for 127.0.0.1 at 2015-02-24 23:22:48 +0900
+I, [2015-02-24T23:22:48.288900 #20260]  INFO -- : Processing by MapController#index as HTML
+I, [2015-02-24T23:22:48.406609 #20260]  INFO -- :   Rendered map/index.html.erb within layouts/application (0.6ms)
+I, [2015-02-24T23:22:48.409601 #20260]  INFO -- : Completed 200 OK in 121ms (Views: 4.7ms | ActiveRecord: 0.8ms)
+I, [2015-02-24T23:22:49.267478 #20260]  INFO -- : Started GET "/images/characters/higashi.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.268469 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/higashi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:49.273838 #20260]  INFO -- : Started GET "/images/characters/jonan.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.277646 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/jonan.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:49.278854 #20260]  INFO -- : Started GET "/images/characters/tyuo.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.280128 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/tyuo.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:49.285151 #20260]  INFO -- : Started GET "/images/characters/hakata.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.286618 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/hakata.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:49.289347 #20260]  INFO -- : Started GET "/images/characters/nishi.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.290831 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/nishi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:49.291846 #20260]  INFO -- : Started GET "/images/characters/minami.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.292742 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/minami.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:22:49.293772 #20260]  INFO -- : Started GET "/images/characters/sawara.jpg" for 127.0.0.1 at 2015-02-24 23:22:49 +0900
+F, [2015-02-24T23:22:49.294780 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/sawara.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:23:07.235063 #20260]  INFO -- : Started GET "/map/lists?area=%E4%B8%AD%E5%A4%AE%E5%8C%BA&lat=35.4437078&lng=139.6380256" for 127.0.0.1 at 2015-02-24 23:23:07 +0900
+I, [2015-02-24T23:23:07.236935 #20260]  INFO -- : Processing by MapController#lists as HTML
+I, [2015-02-24T23:23:07.238632 #20260]  INFO -- :   Parameters: {"area"=>"中央区", "lat"=>"35.4437078", "lng"=>"139.6380256"}
+I, [2015-02-24T23:23:07.274330 #20260]  INFO -- :   Rendered map/lists.html.erb within layouts/application (1.3ms)
+I, [2015-02-24T23:23:07.276319 #20260]  INFO -- : Completed 200 OK in 38ms (Views: 4.1ms | ActiveRecord: 16.2ms)
+I, [2015-02-24T23:23:16.659493 #20260]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 127.0.0.1 at 2015-02-24 23:23:16 +0900
+I, [2015-02-24T23:23:16.662516 #20260]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:23:16.662637 #20260]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-24T23:23:16.848893 #20260]  INFO -- :   Rendered gallery/_pictures.html.erb (1.1ms)
+I, [2015-02-24T23:23:16.849047 #20260]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (10.3ms)
+I, [2015-02-24T23:23:16.851062 #20260]  INFO -- : Completed 200 OK in 188ms (Views: 13.6ms | ActiveRecord: 39.4ms)
+I, [2015-02-24T23:23:36.386737 #20260]  INFO -- : Started GET "/top_pages/home" for 127.0.0.1 at 2015-02-24 23:23:36 +0900
+I, [2015-02-24T23:23:36.388440 #20260]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-24T23:23:36.391093 #20260]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (1.6ms)
+I, [2015-02-24T23:23:36.393739 #20260]  INFO -- : Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.0ms)
+I, [2015-02-24T23:23:42.072408 #20260]  INFO -- : Started GET "/gallery/home?lat=35.4437078&lon=139.6380256" for 127.0.0.1 at 2015-02-24 23:23:42 +0900
+I, [2015-02-24T23:23:42.073406 #20260]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:23:42.073458 #20260]  INFO -- :   Parameters: {"lat"=>"35.4437078", "lon"=>"139.6380256"}
+I, [2015-02-24T23:23:42.205341 #20260]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-24T23:23:42.205594 #20260]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (6.6ms)
+I, [2015-02-24T23:23:42.207336 #20260]  INFO -- : Completed 200 OK in 134ms (Views: 8.7ms | ActiveRecord: 38.3ms)
+I, [2015-02-24T23:23:52.936001 #20260]  INFO -- : Started GET "/top_pages/home" for 127.0.0.1 at 2015-02-24 23:23:52 +0900
+I, [2015-02-24T23:23:52.937368 #20260]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-24T23:23:52.939284 #20260]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (1.1ms)
+I, [2015-02-24T23:23:52.941996 #20260]  INFO -- : Completed 200 OK in 4ms (Views: 4.2ms | ActiveRecord: 0.0ms)
+I, [2015-02-24T23:23:55.487735 #20260]  INFO -- : Started GET "/gallery/home?lat=35.4437078&lon=139.6380256" for 127.0.0.1 at 2015-02-24 23:23:55 +0900
+I, [2015-02-24T23:23:55.488645 #20260]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:23:55.488721 #20260]  INFO -- :   Parameters: {"lat"=>"35.4437078", "lon"=>"139.6380256"}
+I, [2015-02-24T23:23:55.639982 #20260]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-24T23:23:55.640176 #20260]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (7.2ms)
+I, [2015-02-24T23:23:55.642101 #20260]  INFO -- : Completed 200 OK in 153ms (Views: 9.4ms | ActiveRecord: 33.0ms)
+I, [2015-02-24T23:23:59.358799 #20260]  INFO -- : Started GET "/gallery/home?lat=35.4437078&lon=139.6380256&pagination_number_scene=1&scene_name=Park" for 127.0.0.1 at 2015-02-24 23:23:59 +0900
+I, [2015-02-24T23:23:59.359705 #20260]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:23:59.359781 #20260]  INFO -- :   Parameters: {"lat"=>"35.4437078", "lon"=>"139.6380256", "pagination_number_scene"=>"1", "scene_name"=>"Park"}
+I, [2015-02-24T23:23:59.491502 #20260]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-24T23:23:59.491692 #20260]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (8.1ms)
+I, [2015-02-24T23:23:59.496258 #20260]  INFO -- : Completed 200 OK in 136ms (Views: 12.9ms | ActiveRecord: 36.0ms)
+I, [2015-02-24T23:24:09.525600 #20260]  INFO -- : Started GET "/map/index" for 127.0.0.1 at 2015-02-24 23:24:09 +0900
+I, [2015-02-24T23:24:09.526964 #20260]  INFO -- : Processing by MapController#index as HTML
+I, [2015-02-24T23:24:09.529421 #20260]  INFO -- :   Rendered map/index.html.erb within layouts/application (0.1ms)
+I, [2015-02-24T23:24:09.533645 #20260]  INFO -- : Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.3ms)
+I, [2015-02-24T23:24:10.024664 #20260]  INFO -- : Started GET "/images/characters/higashi.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.032493 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/higashi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:24:10.034796 #20260]  INFO -- : Started GET "/images/characters/hakata.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.035961 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/hakata.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:24:10.037223 #20260]  INFO -- : Started GET "/images/characters/minami.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.038642 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/minami.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:24:10.041550 #20260]  INFO -- : Started GET "/images/characters/jonan.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.042488 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/jonan.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:24:10.043189 #20260]  INFO -- : Started GET "/images/characters/tyuo.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.044633 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/tyuo.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:24:10.045440 #20260]  INFO -- : Started GET "/images/characters/nishi.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.046767 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/nishi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:24:10.047489 #20260]  INFO -- : Started GET "/images/characters/sawara.jpg" for 127.0.0.1 at 2015-02-24 23:24:10 +0900
+F, [2015-02-24T23:24:10.048894 #20260] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/sawara.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.071557 #20533]  INFO -- : Started GET "/map/index" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+I, [2015-02-24T23:27:00.077255 #20533]  INFO -- : Processing by MapController#index as HTML
+I, [2015-02-24T23:27:00.086793 #20533]  INFO -- :   Rendered map/index.html.erb within layouts/application (0.7ms)
+I, [2015-02-24T23:27:00.097842 #20533]  INFO -- : Completed 200 OK in 20ms (Views: 13.2ms | ActiveRecord: 0.7ms)
+I, [2015-02-24T23:27:00.808502 #20533]  INFO -- : Started GET "/images/characters/hakata.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.810148 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/hakata.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.819668 #20533]  INFO -- : Started GET "/images/characters/higashi.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.820963 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/higashi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.821964 #20533]  INFO -- : Started GET "/images/characters/nishi.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.823507 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/nishi.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.824916 #20533]  INFO -- : Started GET "/images/characters/tyuo.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.826363 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/tyuo.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.827554 #20533]  INFO -- : Started GET "/images/characters/jonan.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.829617 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/jonan.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.835173 #20533]  INFO -- : Started GET "/images/characters/minami.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.836197 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/minami.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:27:00.837141 #20533]  INFO -- : Started GET "/images/characters/sawara.jpg" for 127.0.0.1 at 2015-02-24 23:27:00 +0900
+F, [2015-02-24T23:27:00.838177 #20533] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/characters/sawara.jpg"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/wataru/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-24T23:30:15.462327 #20853]  INFO -- : Started GET "/map/index" for 127.0.0.1 at 2015-02-24 23:30:15 +0900
+I, [2015-02-24T23:30:15.470284 #20853]  INFO -- : Processing by MapController#index as HTML
+I, [2015-02-24T23:30:15.481228 #20853]  INFO -- :   Rendered map/index.html.erb within layouts/application (1.0ms)
+I, [2015-02-24T23:30:15.493083 #20853]  INFO -- : Completed 200 OK in 23ms (Views: 14.3ms | ActiveRecord: 0.9ms)
+I, [2015-02-24T23:30:26.124496 #20853]  INFO -- : Started GET "/map/lists?area=%E4%B9%85%E6%85%88%E5%B8%82&lat=35.4437078&lng=139.6380256" for 127.0.0.1 at 2015-02-24 23:30:26 +0900
+I, [2015-02-24T23:30:26.126532 #20853]  INFO -- : Processing by MapController#lists as HTML
+I, [2015-02-24T23:30:26.126646 #20853]  INFO -- :   Parameters: {"area"=>"久慈市", "lat"=>"35.4437078", "lng"=>"139.6380256"}
+I, [2015-02-24T23:30:26.217691 #20853]  INFO -- :   Rendered map/lists.html.erb within layouts/application (5.7ms)
+I, [2015-02-24T23:30:26.220024 #20853]  INFO -- : Completed 200 OK in 93ms (Views: 8.7ms | ActiveRecord: 56.3ms)
+I, [2015-02-24T23:30:35.256108 #20853]  INFO -- : Started GET "/albums/show_pictures/22911238?lat=35.4437078&lng=139.6380256" for 127.0.0.1 at 2015-02-24 23:30:35 +0900
+I, [2015-02-24T23:30:35.260818 #20853]  INFO -- : Processing by AlbumsController#show_pictures as HTML
+I, [2015-02-24T23:30:35.260983 #20853]  INFO -- :   Parameters: {"lat"=>"35.4437078", "lng"=>"139.6380256", "album_id"=>"22911238"}
+I, [2015-02-24T23:30:35.277111 #20853]  INFO -- :   Rendered albums/show_pictures.html.erb within layouts/application (11.3ms)
+I, [2015-02-24T23:30:35.279512 #20853]  INFO -- : Completed 200 OK in 18ms (Views: 6.0ms | ActiveRecord: 9.0ms)
+I, [2015-02-24T23:30:42.643280 #20853]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 127.0.0.1 at 2015-02-24 23:30:42 +0900
+I, [2015-02-24T23:30:42.644819 #20853]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:30:42.644895 #20853]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-24T23:30:42.819816 #20853]  INFO -- :   Rendered gallery/_pictures.html.erb (1.1ms)
+I, [2015-02-24T23:30:42.819974 #20853]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (9.2ms)
+I, [2015-02-24T23:30:42.822090 #20853]  INFO -- : Completed 200 OK in 177ms (Views: 12.7ms | ActiveRecord: 34.4ms)
+I, [2015-02-24T23:30:46.832524 #20853]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=instagood" for 127.0.0.1 at 2015-02-24 23:30:46 +0900
+I, [2015-02-24T23:30:46.834882 #20853]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-24T23:30:46.835054 #20853]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"instagood"}
+I, [2015-02-24T23:30:46.958558 #20853]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-24T23:30:46.958737 #20853]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (10.4ms)
+I, [2015-02-24T23:30:46.960511 #20853]  INFO -- : Completed 200 OK in 125ms (Views: 12.5ms | ActiveRecord: 35.3ms)

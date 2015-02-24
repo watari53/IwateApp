@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* CSS Document */
+/*リセット */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    /*border-collapse:collapse;border-spacing:0; font-size:100%;*/
+}
+img {
+    border: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    /*font-style:normal;font-weight:normal;*/
+}
+ul li, ol li {
+    list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+    /*font-size:100%;font-weight:normal;*/
+}
+/*input,textarea,select{ font-family:inherit;font-size:inherit;font-weight:inherit; }*/
+/*input,textarea,select{ *font-size:100%; }*/
+
+a img {
+    border: none;
+}
+/*レイアウト*/
+
+body {
+    /*font-size: 80%;*/
+    
+    line-height: 1.2;
+    /*font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;*/
+    /*    border-bottom: #ff8000 solid 5px;
+    background: url(/images/lists/bg.gif) repeat;*/
+    
+    background-color: rgb(230, 230, 230);
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:hover img {
+    opacity: 0.8;
+}
+#wrap {
+    /*background: url(/images/lists/wra_bg.gif) repeat-x top;*/
+    margin-top: 50px;
+}
+h1 {
+    margin: 0 0 20px 0;
+}
+#grid-content {
+}
+#grid-content li {
+    /*    background: #fff url(/images/lists/t_bg.gif) no-repeat center bottom;*/
+    
+    width: 196px;
+    padding: 20px 20px 0px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    border: 3px black solid; /* 枠線の装飾 */
+    background-color: white;
+}
+#grid-content li h2 {
+    margin: 10px auto 0px;
+    text-align: center;
+}
+#grid-content li span {
+    color: #FF8406;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+}
+#grid-content li > p+p {
+    /*font-size:90%;*/
+    
+    text-align: justify;
+    margin-bottom: 15px;
+}
+p#copy {
+    margin: 20px 0 10px 20px;
+}

@@ -1,0 +1,36 @@
+.navbar-custom .icon-bar {
+  background-color:#fff;
+}
+
+.navbar-custom {
+  background-color: #969BA0;
+    color:#fff;
+}
+
+.navbar-custom li>a:hover,.navbar-custom li>a:focus {
+  background-color:#49bfff;
+}
+
+.navbar-custom a{
+    color:#fefefe;
+}
+
+.navbar-custom .form-control:focus {
+  border-color: #49bfff;
+  outline: 0;
+  -webkit-box-shadow: inset 0 0 0;
+  box-shadow: inset 0 0 0;
+}
+
+html,body{
+    height:100%;
+}
+
+.glyphicon {
+  float:left;
+  padding: 15px 0 15px 0;
+}
+
+.nav>li>a {
+  padding: 15px 20px 15px 5px !important;
+}

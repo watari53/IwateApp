@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @album.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @album.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @album.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @album.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @album.longitude %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @album.date %>
+</p>
+
+<%= link_to 'Edit', edit_album_path(@album) %> |
+<%= link_to 'Back', albums_path %>
