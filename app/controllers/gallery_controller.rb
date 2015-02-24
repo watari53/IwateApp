@@ -41,11 +41,11 @@ class GalleryController < ApplicationController
       end
       @near_albums_title_list[album.album_id] = "#{album.title}"
 
-      if tmp_scene.text == params[:album_title]
+      if album.title == params[:album_title]
         @selected_near_page = selected_near_number / 10 + 1
       else
         selected_near_number += 1
-      end 
+      end
     end
 
     #場面タグリストを作成
@@ -74,7 +74,7 @@ class GalleryController < ApplicationController
 
     #ハッシュタグリストを作成
     tagcounts_tmp = Tagcount.where('count > ?',10)
-   
+
     tagcounts = []
     tagcounts_tmp.each do |tmp|
       if tmp.count.to_i > 100
@@ -85,7 +85,7 @@ class GalleryController < ApplicationController
     selected_tag_number = 0
     tagcounts.each do |tagcount|
       @tags << Tag.where(text:tagcount.text).first
-      
+
       if tagcount.text == params[:tag_name]
         @selected_tag_page = selected_tag_number / 10 + 1
       else
