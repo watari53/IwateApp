@@ -117,6 +117,10 @@
 
    <div data-pws-tab="anynameyouwant4" data-pws-tab-name="単語検索" data-pws-tab-icon="fa fa-search" >
      <div id = "keyword_list">
+       <%= form_tag "/gallery/home?lat=#{@current_lat}&lon=#{@current_lon}" do %>
+         <%= text_field_tag :keyword %>
+         <%= submit_tag "サブミット" %>
+       <% end %>
      </div>
    </div>
 </div>
