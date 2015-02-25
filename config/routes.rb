@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'gallery/home'
+  post 'gallery/home'
 
   get 'top_pages/home'
 
