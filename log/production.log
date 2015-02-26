@@ -232,3 +232,165 @@ I, [2015-02-26T00:51:29.503860 #20041]  INFO -- :   Parameters: {"utf8"=>"✓", 
 I, [2015-02-26T00:51:29.631366 #20041]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
 I, [2015-02-26T00:51:29.631502 #20041]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (6.2ms)
 I, [2015-02-26T00:51:29.632768 #20041]  INFO -- : Completed 200 OK in 129ms (Views: 7.7ms | ActiveRecord: 40.0ms)
+I, [2015-02-26T12:22:26.358254 #23431]  INFO -- : Started GET "/map/index" for 10.33.87.173 at 2015-02-26 12:22:26 +0900
+I, [2015-02-26T12:22:26.366816 #23431]  INFO -- : Processing by MapController#index as HTML
+I, [2015-02-26T12:22:26.380145 #23431]  INFO -- :   Rendered map/index.html.erb within layouts/application (1.0ms)
+I, [2015-02-26T12:22:26.402075 #23431]  INFO -- : Completed 200 OK in 35ms (Views: 24.8ms | ActiveRecord: 1.1ms)
+I, [2015-02-26T12:22:27.254154 #23431]  INFO -- : Started GET "/images/favicon.ico" for 10.33.87.173 at 2015-02-26 12:22:27 +0900
+F, [2015-02-26T12:22:27.255508 #23431] FATAL -- : 
+ActionController::RoutingError (No route matches [GET] "/images/favicon.ico"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  request_store (1.1.0) lib/request_store/middleware.rb:8:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /root/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /root/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /root/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+I, [2015-02-26T12:22:29.271208 #23431]  INFO -- : Started GET "/top_pages/home" for 10.33.87.173 at 2015-02-26 12:22:29 +0900
+I, [2015-02-26T12:22:29.273371 #23431]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-26T12:22:29.277487 #23431]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (2.4ms)
+I, [2015-02-26T12:22:29.280085 #23431]  INFO -- : Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.0ms)
+I, [2015-02-26T12:22:31.824841 #23431]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 12:22:31 +0900
+I, [2015-02-26T12:22:31.826853 #23431]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:22:31.826920 #23431]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T12:22:32.042267 #23431]  INFO -- :   Rendered gallery/_pictures.html.erb (1.4ms)
+I, [2015-02-26T12:22:32.042447 #23431]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (13.6ms)
+I, [2015-02-26T12:22:32.044752 #23431]  INFO -- : Completed 200 OK in 218ms (Views: 17.3ms | ActiveRecord: 44.7ms)
+I, [2015-02-26T12:22:39.543064 #23431]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:22:39 +0900
+I, [2015-02-26T12:22:39.544435 #23431]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:22:39.544508 #23431]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"test", "commit"=>"サブミット"}
+I, [2015-02-26T12:22:39.687265 #23431]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-26T12:22:39.687655 #23431]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (9.3ms)
+I, [2015-02-26T12:22:39.689710 #23431]  INFO -- : Completed 200 OK in 145ms (Views: 11.7ms | ActiveRecord: 36.9ms)
+I, [2015-02-26T12:22:55.835232 #23431]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:22:55 +0900
+I, [2015-02-26T12:22:55.836292 #23431]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:22:55.836371 #23431]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"和歌sr治安下wｊｈたいをｈｔぎあうをｈｔｒぷごあｈ", "commit"=>"サブミット"}
+I, [2015-02-26T12:22:56.009008 #23431]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-26T12:22:56.009203 #23431]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (7.8ms)
+I, [2015-02-26T12:22:56.010993 #23431]  INFO -- : Completed 200 OK in 175ms (Views: 9.9ms | ActiveRecord: 38.4ms)
+I, [2015-02-26T12:29:00.572215 #23596]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:29:00 +0900
+I, [2015-02-26T12:29:00.579183 #23596]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:29:00.579270 #23596]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"和歌sr治安下wｊｈたいをｈｔぎあうをｈｔｒぷごあｈ", "commit"=>"サブミット"}
+I, [2015-02-26T12:29:00.734306 #23596]  INFO -- : Completed 500 Internal Server Error in 155ms
+F, [2015-02-26T12:29:00.738362 #23596] FATAL -- : 
+NoMethodError (undefined method `escape_like' for #<GalleryController:0x007f1c90f153e8>):
+  app/controllers/gallery_controller.rb:115:in `home'
+
+
+I, [2015-02-26T12:29:05.017350 #23596]  INFO -- : Started GET "/top_pages/home" for 10.33.87.173 at 2015-02-26 12:29:05 +0900
+I, [2015-02-26T12:29:05.021009 #23596]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-26T12:29:05.026588 #23596]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (3.4ms)
+I, [2015-02-26T12:29:05.070952 #23596]  INFO -- : Completed 200 OK in 50ms (Views: 49.5ms | ActiveRecord: 0.0ms)
+I, [2015-02-26T12:29:07.011719 #23596]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 12:29:07 +0900
+I, [2015-02-26T12:29:07.013118 #23596]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:29:07.013193 #23596]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T12:29:07.148839 #23596]  INFO -- :   Rendered gallery/_pictures.html.erb (1.7ms)
+I, [2015-02-26T12:29:07.149069 #23596]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (14.7ms)
+I, [2015-02-26T12:29:07.154732 #23596]  INFO -- : Completed 200 OK in 141ms (Views: 21.6ms | ActiveRecord: 36.9ms)
+I, [2015-02-26T12:29:11.681201 #23596]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:29:11 +0900
+I, [2015-02-26T12:29:11.682469 #23596]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:29:11.682582 #23596]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"test", "commit"=>"サブミット"}
+I, [2015-02-26T12:29:11.802177 #23596]  INFO -- : Completed 500 Internal Server Error in 119ms
+F, [2015-02-26T12:29:11.806273 #23596] FATAL -- : 
+NoMethodError (undefined method `escape_like' for #<GalleryController:0x007f1c8f196d30>):
+  app/controllers/gallery_controller.rb:115:in `home'
+
+
+I, [2015-02-26T12:31:55.748183 #23742]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:31:55 +0900
+I, [2015-02-26T12:31:55.756206 #23742]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:31:55.756343 #23742]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"test", "commit"=>"サブミット"}
+I, [2015-02-26T12:31:55.934618 #23742]  INFO -- :   Rendered gallery/_pictures.html.erb (16.9ms)
+I, [2015-02-26T12:31:55.934852 #23742]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (28.7ms)
+I, [2015-02-26T12:31:55.940900 #23742]  INFO -- : Completed 200 OK in 184ms (Views: 21.4ms | ActiveRecord: 49.1ms)
+I, [2015-02-26T12:32:11.077818 #23742]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:32:11 +0900
+I, [2015-02-26T12:32:11.079175 #23742]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:32:11.079326 #23742]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"岩手県", "commit"=>"サブミット"}
+I, [2015-02-26T12:32:11.256831 #23742]  INFO -- :   Rendered gallery/_pictures.html.erb (70.6ms)
+I, [2015-02-26T12:32:11.257203 #23742]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (79.9ms)
+I, [2015-02-26T12:32:11.259602 #23742]  INFO -- : Completed 200 OK in 180ms (Views: 63.9ms | ActiveRecord: 46.6ms)
+I, [2015-02-26T12:32:31.000020 #23742]  INFO -- : Started GET "/map/route?lat=8&lng=&dstlat=39.668959426&dstlng=141.003551895" for 10.33.87.173 at 2015-02-26 12:32:30 +0900
+I, [2015-02-26T12:32:31.002865 #23742]  INFO -- : Processing by MapController#route as HTML
+I, [2015-02-26T12:32:31.002967 #23742]  INFO -- :   Parameters: {"lat"=>"8", "lng"=>"", "dstlat"=>"39.668959426", "dstlng"=>"141.003551895"}
+I, [2015-02-26T12:32:31.006640 #23742]  INFO -- :   Rendered map/route.html.erb within layouts/application (0.9ms)
+I, [2015-02-26T12:32:31.009438 #23742]  INFO -- : Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+I, [2015-02-26T12:34:37.619387 #23819]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:34:37 +0900
+I, [2015-02-26T12:34:37.626763 #23819]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:34:37.626851 #23819]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"岩手県", "commit"=>"サブミット"}
+I, [2015-02-26T12:34:37.809448 #23819]  INFO -- :   Rendered gallery/_pictures.html.erb (16.4ms)
+I, [2015-02-26T12:34:37.809839 #23819]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (29.1ms)
+I, [2015-02-26T12:34:37.854615 #23819]  INFO -- : Completed 200 OK in 228ms (Views: 73.9ms | ActiveRecord: 35.0ms)
+I, [2015-02-26T12:35:15.496899 #23868]  INFO -- : Started POST "/gallery/home" for 10.33.87.173 at 2015-02-26 12:35:15 +0900
+I, [2015-02-26T12:35:15.503980 #23868]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:35:15.504065 #23868]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"GFFOl9Vmmig1MmpQLShUPkF8EuicI/CsvkUSLkkhw44=", "keyword"=>"岩手県", "commit"=>"サブミット"}
+I, [2015-02-26T12:35:15.679029 #23868]  INFO -- :   Rendered gallery/_pictures.html.erb (15.9ms)
+I, [2015-02-26T12:35:15.679279 #23868]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (28.2ms)
+I, [2015-02-26T12:35:15.723496 #23868]  INFO -- : Completed 200 OK in 219ms (Views: 72.4ms | ActiveRecord: 31.9ms)
+I, [2015-02-26T12:36:11.108075 #23868]  INFO -- : Started GET "/top_pages/home" for 10.33.87.173 at 2015-02-26 12:36:11 +0900
+I, [2015-02-26T12:36:11.110280 #23868]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-26T12:36:11.114158 #23868]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (2.2ms)
+I, [2015-02-26T12:36:11.116367 #23868]  INFO -- : Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+I, [2015-02-26T12:36:47.325107 #23868]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 12:36:47 +0900
+I, [2015-02-26T12:36:47.326705 #23868]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:36:47.326772 #23868]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T12:36:47.462997 #23868]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-26T12:36:47.463197 #23868]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (9.5ms)
+I, [2015-02-26T12:36:47.465434 #23868]  INFO -- : Completed 200 OK in 139ms (Views: 12.2ms | ActiveRecord: 38.4ms)
+I, [2015-02-26T12:36:56.254980 #23868]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=instagood" for 10.33.87.173 at 2015-02-26 12:36:56 +0900
+I, [2015-02-26T12:36:56.256208 #23868]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:36:56.256273 #23868]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"instagood"}
+I, [2015-02-26T12:36:56.382836 #23868]  INFO -- :   Rendered gallery/_pictures.html.erb (2.0ms)
+I, [2015-02-26T12:36:56.383053 #23868]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (9.7ms)
+I, [2015-02-26T12:36:56.387042 #23868]  INFO -- : Completed 200 OK in 131ms (Views: 13.9ms | ActiveRecord: 33.2ms)
+I, [2015-02-26T12:44:22.576697 #24064]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=instagood" for 10.33.87.173 at 2015-02-26 12:44:22 +0900
+I, [2015-02-26T12:44:22.584435 #24064]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:44:22.584514 #24064]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"instagood"}
+I, [2015-02-26T12:44:22.821913 #24064]  INFO -- :   Rendered gallery/_pictures.html.erb (7.3ms)
+I, [2015-02-26T12:44:22.822151 #24064]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (78.4ms)
+I, [2015-02-26T12:44:22.825753 #24064]  INFO -- : Completed 200 OK in 241ms (Views: 83.8ms | ActiveRecord: 41.4ms)
+I, [2015-02-26T12:44:26.521647 #24064]  INFO -- : Started GET "/map/route?lat=LAT8&lng=LON&dstlat=39.701457677&dstlng=141.151983201" for 10.33.87.173 at 2015-02-26 12:44:26 +0900
+I, [2015-02-26T12:44:26.525986 #24064]  INFO -- : Processing by MapController#route as HTML
+I, [2015-02-26T12:44:26.526134 #24064]  INFO -- :   Parameters: {"lat"=>"LAT8", "lng"=>"LON", "dstlat"=>"39.701457677", "dstlng"=>"141.151983201"}
+I, [2015-02-26T12:44:26.528989 #24064]  INFO -- :   Rendered map/route.html.erb within layouts/application (1.0ms)
+I, [2015-02-26T12:44:26.531838 #24064]  INFO -- : Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.0ms)
+I, [2015-02-26T12:44:30.685461 #24064]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=instagood" for 10.33.87.173 at 2015-02-26 12:44:30 +0900
+I, [2015-02-26T12:44:30.686945 #24064]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:44:30.687014 #24064]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"instagood"}
+I, [2015-02-26T12:44:30.810107 #24064]  INFO -- :   Rendered gallery/_pictures.html.erb (2.1ms)
+I, [2015-02-26T12:44:30.810329 #24064]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (11.5ms)
+I, [2015-02-26T12:44:30.812427 #24064]  INFO -- : Completed 200 OK in 125ms (Views: 14.0ms | ActiveRecord: 34.2ms)
+I, [2015-02-26T12:44:43.001018 #24064]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Water" for 10.33.87.173 at 2015-02-26 12:44:43 +0900
+I, [2015-02-26T12:44:43.002366 #24064]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:44:43.002445 #24064]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Water"}
+I, [2015-02-26T12:44:43.173286 #24064]  INFO -- :   Rendered gallery/_pictures.html.erb (2.4ms)
+I, [2015-02-26T12:44:43.173579 #24064]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (12.0ms)
+I, [2015-02-26T12:44:43.175660 #24064]  INFO -- : Completed 200 OK in 173ms (Views: 14.4ms | ActiveRecord: 46.6ms)
+I, [2015-02-26T12:44:49.039655 #24064]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Beach" for 10.33.87.173 at 2015-02-26 12:44:49 +0900
+I, [2015-02-26T12:44:49.040969 #24064]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:44:49.041037 #24064]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Beach"}
+I, [2015-02-26T12:44:49.220983 #24064]  INFO -- :   Rendered gallery/_pictures.html.erb (2.0ms)
+I, [2015-02-26T12:44:49.221198 #24064]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (9.8ms)
+I, [2015-02-26T12:44:49.223131 #24064]  INFO -- : Completed 200 OK in 182ms (Views: 12.0ms | ActiveRecord: 48.1ms)
+I, [2015-02-26T12:44:54.172185 #24064]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Night+Life" for 10.33.87.173 at 2015-02-26 12:44:54 +0900
+I, [2015-02-26T12:44:54.175290 #24064]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T12:44:54.175365 #24064]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Night Life"}
+I, [2015-02-26T12:44:54.429694 #24064]  INFO -- :   Rendered gallery/_pictures.html.erb (1.9ms)
+I, [2015-02-26T12:44:54.430112 #24064]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (50.4ms)
+I, [2015-02-26T12:44:54.431899 #24064]  INFO -- : Completed 200 OK in 256ms (Views: 52.5ms | ActiveRecord: 59.1ms)

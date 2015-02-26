@@ -96,7 +96,7 @@ class GalleryController < ApplicationController
     picture_max_count = 15
     picture_count = 1
 
-    if params[:tag_name] == nil and params[:scene_name] == nil
+    if params[:tag_name] == nil and params[:scene_name] == nil and params[:keyword] == nil
       @selected_tab = 1
       if params[:album_title] != nil
         @selected_word = params[:album_title]
@@ -111,6 +111,8 @@ class GalleryController < ApplicationController
         end
         end
       end
+    elsif params[:keyword] != nil
+      @pictures = Picture.where("title LIKE ?", "%#{escape_like(params[:keyword])}%").limit(picture_max_count)
     elsif params[:scene_name] != nil
       @selected_tab = 3
       @selected_word = translateSceneToJP(params[:scene_name])
@@ -190,5 +192,9 @@ class GalleryController < ApplicationController
     y = primevertical * Math.cos(latave) * longdiff
 
     return Math.sqrt(x ** 2 + y ** 2)
+  end
+
+  def escape_like(string)
+    return string.gsub(/[\\%_]/){|m| "\\#{m}"}
   end
 end
