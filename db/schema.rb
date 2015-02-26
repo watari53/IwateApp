@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20150205143330) do
   end
 
   create_table "tagcounts", force: true do |t|
-    t.string   "count"
+    t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "text"

@@ -394,3 +394,487 @@ I, [2015-02-26T12:44:54.175365 #24064]  INFO -- :   Parameters: {"lat"=>"LAT", "
 I, [2015-02-26T12:44:54.429694 #24064]  INFO -- :   Rendered gallery/_pictures.html.erb (1.9ms)
 I, [2015-02-26T12:44:54.430112 #24064]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (50.4ms)
 I, [2015-02-26T12:44:54.431899 #24064]  INFO -- : Completed 200 OK in 256ms (Views: 52.5ms | ActiveRecord: 59.1ms)
+I, [2015-02-26T18:14:22.288020 #28202]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Night+Life" for 10.33.87.173 at 2015-02-26 18:14:22 +0900
+I, [2015-02-26T18:14:22.302657 #28202]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:14:22.302801 #28202]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Night Life"}
+I, [2015-02-26T18:14:22.687335 #28202]  INFO -- :   Rendered gallery/_pictures.html.erb (3.8ms)
+I, [2015-02-26T18:14:22.687626 #28202]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (39.2ms)
+I, [2015-02-26T18:14:22.690928 #28202]  INFO -- : Completed 200 OK in 388ms (Views: 44.3ms | ActiveRecord: 81.9ms)
+I, [2015-02-26T18:30:35.497204 #28470]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Night+Life" for 10.33.87.173 at 2015-02-26 18:30:35 +0900
+I, [2015-02-26T18:30:35.508487 #28470]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:30:35.508615 #28470]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Night Life"}
+I, [2015-02-26T18:30:35.632049 #28470]  INFO -- : Completed 500 Internal Server Error in 123ms
+F, [2015-02-26T18:30:35.633447 #28470] FATAL -- : 
+NoMethodError (undefined method `or' for "":String):
+  app/controllers/gallery_controller.rb:208:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:207:in `each'
+  app/controllers/gallery_controller.rb:207:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:33:54.819779 #28547]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Night+Life" for 10.33.87.173 at 2015-02-26 18:33:54 +0900
+I, [2015-02-26T18:33:54.826943 #28547]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:33:54.827024 #28547]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Night Life"}
+I, [2015-02-26T18:33:54.953941 #28547]  INFO -- : Completed 500 Internal Server Error in 127ms
+F, [2015-02-26T18:33:54.955412 #28547] FATAL -- : 
+NoMethodError (undefined method `[]' for #<Class:0x007fe14451be18>):
+  app/controllers/gallery_controller.rb:206:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:34:37.312112 #28592]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Night+Life" for 10.33.87.173 at 2015-02-26 18:34:37 +0900
+I, [2015-02-26T18:34:37.319489 #28592]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:34:37.319608 #28592]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Night Life"}
+I, [2015-02-26T18:34:37.443966 #28592]  INFO -- : Completed 500 Internal Server Error in 124ms
+F, [2015-02-26T18:34:37.445415 #28592] FATAL -- : 
+NoMethodError (undefined method `[]' for #<Class:0x007fe3f40b16e0>):
+  app/controllers/gallery_controller.rb:206:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:35:10.431841 #28640]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Night+Life" for 10.33.87.173 at 2015-02-26 18:35:10 +0900
+I, [2015-02-26T18:35:10.439236 #28640]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:35:10.439323 #28640]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Night Life"}
+I, [2015-02-26T18:35:10.563982 #28640]  INFO -- : Completed 500 Internal Server Error in 125ms
+F, [2015-02-26T18:35:10.565388 #28640] FATAL -- : 
+NoMethodError (undefined method `[]' for #<Class:0x007f8724488d68>):
+  app/controllers/gallery_controller.rb:207:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:36:08.328796 #28640]  INFO -- : Started GET "/gallery/home" for 10.33.87.173 at 2015-02-26 18:36:08 +0900
+I, [2015-02-26T18:36:08.330427 #28640]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:36:08.461795 #28640]  INFO -- : Completed 500 Internal Server Error in 131ms
+F, [2015-02-26T18:36:08.462998 #28640] FATAL -- : 
+NoMethodError (undefined method `[]' for #<Class:0x007f8724488d68>):
+  app/controllers/gallery_controller.rb:207:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:36:15.313773 #28640]  INFO -- : Started GET "/top_pages/home" for 10.33.87.173 at 2015-02-26 18:36:15 +0900
+I, [2015-02-26T18:36:15.315945 #28640]  INFO -- : Processing by TopPagesController#home as HTML
+I, [2015-02-26T18:36:15.320931 #28640]  INFO -- :   Rendered top_pages/home.html.erb within layouts/application (2.8ms)
+I, [2015-02-26T18:36:15.340758 #28640]  INFO -- : Completed 200 OK in 25ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+I, [2015-02-26T18:36:18.830873 #28640]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:36:18 +0900
+I, [2015-02-26T18:36:18.832197 #28640]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:36:18.832275 #28640]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:36:18.939370 #28640]  INFO -- : Completed 500 Internal Server Error in 107ms
+F, [2015-02-26T18:36:18.948863 #28640] FATAL -- : 
+NoMethodError (undefined method `[]' for #<Class:0x007f8724488d68>):
+  app/controllers/gallery_controller.rb:207:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:36:55.486286 #28692]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:36:55 +0900
+I, [2015-02-26T18:36:55.493788 #28692]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:36:55.493871 #28692]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:36:55.615984 #28692]  INFO -- : Completed 500 Internal Server Error in 122ms
+F, [2015-02-26T18:36:55.617373 #28692] FATAL -- : 
+NoMethodError (undefined method `[]' for #<Class:0x007fce8b543a10>):
+  app/controllers/gallery_controller.rb:207:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:37:26.289452 #28735]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:37:26 +0900
+I, [2015-02-26T18:37:26.297471 #28735]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:37:26.297899 #28735]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:37:26.422666 #28735]  INFO -- : Completed 500 Internal Server Error in 125ms
+F, [2015-02-26T18:37:26.424046 #28735] FATAL -- : 
+NoMethodError (undefined method `All' for #<Class:0x007fe6ac78c3d8>):
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:37:28.334869 #28735]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:37:28 +0900
+I, [2015-02-26T18:37:28.337655 #28735]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:37:28.337737 #28735]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:37:28.464960 #28735]  INFO -- : Completed 500 Internal Server Error in 127ms
+F, [2015-02-26T18:37:28.466324 #28735] FATAL -- : 
+NoMethodError (undefined method `All' for #<Class:0x007fe6ac78c3d8>):
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:37:45.655351 #28774]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:37:45 +0900
+I, [2015-02-26T18:37:45.663992 #28774]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:37:45.664065 #28774]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:37:46.171269 #28774]  INFO -- : Completed 500 Internal Server Error in 507ms
+F, [2015-02-26T18:37:46.172631 #28774] FATAL -- : 
+TypeError (no implicit conversion of Symbol into Integer):
+  app/controllers/gallery_controller.rb:207:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:39:52.299056 #28833]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:39:52 +0900
+I, [2015-02-26T18:39:52.307253 #28833]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:39:52.307342 #28833]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:39:52.428356 #28833]  INFO -- : Completed 500 Internal Server Error in 121ms
+F, [2015-02-26T18:39:52.429762 #28833] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:210:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:209:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:42:17.585305 #28908]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:42:17 +0900
+I, [2015-02-26T18:42:17.593592 #28908]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:42:17.593718 #28908]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:42:17.716353 #28908]  INFO -- : Completed 500 Internal Server Error in 122ms
+F, [2015-02-26T18:42:17.717842 #28908] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:42:45.646189 #28944]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:42:45 +0900
+I, [2015-02-26T18:42:45.654025 #28944]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:42:45.654114 #28944]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:42:45.774904 #28944]  INFO -- : Completed 500 Internal Server Error in 121ms
+F, [2015-02-26T18:42:45.776304 #28944] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:45:20.436008 #29012]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:45:20 +0900
+I, [2015-02-26T18:45:20.445766 #29012]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:45:20.445934 #29012]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:45:20.567207 #29012]  INFO -- : Completed 500 Internal Server Error in 121ms
+F, [2015-02-26T18:45:20.568794 #29012] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:46:32.873844 #29061]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:46:32 +0900
+I, [2015-02-26T18:46:32.880997 #29061]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:46:32.881069 #29061]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:46:32.997265 #29061]  INFO -- : Completed 500 Internal Server Error in 116ms
+F, [2015-02-26T18:46:32.998732 #29061] FATAL -- : 
+NoMethodError (undefined method `count' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:47:17.122300 #29106]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:47:17 +0900
+I, [2015-02-26T18:47:17.130031 #29106]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:47:17.130109 #29106]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:47:17.260010 #29106]  INFO -- : Completed 500 Internal Server Error in 130ms
+F, [2015-02-26T18:47:17.261392 #29106] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:47:19.720723 #29106]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:47:19 +0900
+I, [2015-02-26T18:47:19.721958 #29106]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:47:19.722031 #29106]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:47:19.845893 #29106]  INFO -- : Completed 500 Internal Server Error in 124ms
+F, [2015-02-26T18:47:19.847081 #29106] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:48:03.894511 #29146]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:48:03 +0900
+I, [2015-02-26T18:48:03.901872 #29146]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:48:03.901963 #29146]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:48:04.019283 #29146]  INFO -- : Completed 500 Internal Server Error in 117ms
+F, [2015-02-26T18:48:04.020920 #29146] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:213:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:49:26.721190 #29200]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:49:26 +0900
+I, [2015-02-26T18:49:26.728364 #29200]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:49:26.728435 #29200]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:49:26.851506 #29200]  INFO -- : Completed 500 Internal Server Error in 123ms
+F, [2015-02-26T18:49:26.854034 #29200] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:212:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:211:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:50:13.931296 #29249]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:50:13 +0900
+I, [2015-02-26T18:50:13.938499 #29249]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:50:13.938614 #29249]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:50:14.059248 #29249]  INFO -- : Completed 500 Internal Server Error in 120ms
+F, [2015-02-26T18:50:14.065016 #29249] FATAL -- : 
+NoMethodError (undefined method `text' for nil:NilClass):
+  app/controllers/gallery_controller.rb:213:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:212:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T18:53:04.293279 #29312]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:53:04 +0900
+I, [2015-02-26T18:53:04.301210 #29312]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:53:04.301307 #29312]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:53:04.504922 #29312]  INFO -- :   Rendered gallery/_pictures.html.erb (2.2ms)
+I, [2015-02-26T18:53:04.505187 #29312]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (32.9ms)
+I, [2015-02-26T18:53:04.550692 #29312]  INFO -- : Completed 200 OK in 249ms (Views: 80.3ms | ActiveRecord: 44.7ms)
+I, [2015-02-26T18:53:20.996898 #29359]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:53:20 +0900
+I, [2015-02-26T18:53:21.004867 #29359]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:53:21.004937 #29359]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:53:21.239000 #29359]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T18:53:21.239209 #29359]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (34.3ms)
+I, [2015-02-26T18:53:21.242717 #29359]  INFO -- : Completed 200 OK in 238ms (Views: 39.4ms | ActiveRecord: 41.5ms)
+I, [2015-02-26T18:54:41.413284 #29411]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:54:41 +0900
+I, [2015-02-26T18:54:41.420643 #29411]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:54:41.420712 #29411]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:54:41.647448 #29411]  INFO -- :   Rendered gallery/_pictures.html.erb (1.5ms)
+I, [2015-02-26T18:54:41.647697 #29411]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (29.9ms)
+I, [2015-02-26T18:54:41.651031 #29411]  INFO -- : Completed 200 OK in 230ms (Views: 34.9ms | ActiveRecord: 41.6ms)
+I, [2015-02-26T18:58:01.384834 #29487]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:58:01 +0900
+I, [2015-02-26T18:58:01.397648 #29487]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:58:01.397730 #29487]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:58:01.646349 #29487]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T18:58:01.646599 #29487]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (30.0ms)
+I, [2015-02-26T18:58:01.649915 #29487]  INFO -- : Completed 200 OK in 252ms (Views: 35.0ms | ActiveRecord: 59.9ms)
+I, [2015-02-26T18:58:43.105333 #29535]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:58:43 +0900
+I, [2015-02-26T18:58:43.114185 #29535]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:58:43.114263 #29535]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:58:43.452012 #29535]  INFO -- :   Rendered gallery/_pictures.html.erb (1.7ms)
+I, [2015-02-26T18:58:43.452246 #29535]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (31.0ms)
+I, [2015-02-26T18:58:43.455691 #29535]  INFO -- : Completed 200 OK in 341ms (Views: 36.1ms | ActiveRecord: 65.6ms)
+I, [2015-02-26T18:58:56.670005 #29575]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 18:58:56 +0900
+I, [2015-02-26T18:58:56.678808 #29575]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T18:58:56.678916 #29575]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T18:58:57.132951 #29575]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T18:58:57.133176 #29575]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (30.2ms)
+I, [2015-02-26T18:58:57.136447 #29575]  INFO -- : Completed 200 OK in 457ms (Views: 35.2ms | ActiveRecord: 108.7ms)
+I, [2015-02-26T19:00:44.421367 #29639]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:00:44 +0900
+I, [2015-02-26T19:00:44.430639 #29639]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:00:44.430718 #29639]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:00:44.623066 #29639]  INFO -- : Completed 500 Internal Server Error in 192ms
+F, [2015-02-26T19:00:44.624350 #29639] FATAL -- : 
+NoMethodError (undefined method `text' for "nature":String):
+  app/controllers/gallery_controller.rb:219:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:218:in `each'
+  app/controllers/gallery_controller.rb:218:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T19:02:32.786162 #29721]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:02:32 +0900
+I, [2015-02-26T19:02:32.794747 #29721]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:02:32.794828 #29721]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:02:33.330833 #29721]  INFO -- : Completed 500 Internal Server Error in 536ms
+F, [2015-02-26T19:02:33.332285 #29721] FATAL -- : 
+ActiveModel::MissingAttributeError (missing attribute: text):
+  app/controllers/gallery_controller.rb:219:in `block in searchTableOr'
+  app/controllers/gallery_controller.rb:218:in `searchTableOr'
+  app/controllers/gallery_controller.rb:85:in `home'
+
+
+I, [2015-02-26T19:09:45.162864 #29838]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:09:45 +0900
+I, [2015-02-26T19:09:45.170207 #29838]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:09:45.170294 #29838]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:09:45.506131 #29838]  INFO -- :   Rendered gallery/_pictures.html.erb (1.7ms)
+I, [2015-02-26T19:09:45.506340 #29838]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (31.5ms)
+I, [2015-02-26T19:09:45.510051 #29838]  INFO -- : Completed 200 OK in 340ms (Views: 36.9ms | ActiveRecord: 66.6ms)
+I, [2015-02-26T19:10:00.556024 #29878]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:10:00 +0900
+I, [2015-02-26T19:10:00.565097 #29878]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:10:00.565195 #29878]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:10:00.813377 #29878]  INFO -- :   Rendered gallery/_pictures.html.erb (40.7ms)
+I, [2015-02-26T19:10:00.813649 #29878]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (70.6ms)
+I, [2015-02-26T19:10:00.816997 #29878]  INFO -- : Completed 200 OK in 252ms (Views: 75.6ms | ActiveRecord: 62.8ms)
+I, [2015-02-26T19:10:20.782640 #29929]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:10:20 +0900
+I, [2015-02-26T19:10:20.789957 #29929]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:10:20.790032 #29929]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:10:21.050895 #29929]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T19:10:21.051127 #29929]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (30.3ms)
+I, [2015-02-26T19:10:21.054365 #29929]  INFO -- : Completed 200 OK in 264ms (Views: 35.4ms | ActiveRecord: 62.8ms)
+I, [2015-02-26T19:10:47.017491 #29969]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:10:47 +0900
+I, [2015-02-26T19:10:47.025659 #29969]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:10:47.025735 #29969]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:10:47.294584 #29969]  INFO -- :   Rendered gallery/_pictures.html.erb (43.5ms)
+I, [2015-02-26T19:10:47.294884 #29969]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (76.0ms)
+I, [2015-02-26T19:10:47.301417 #29969]  INFO -- : Completed 200 OK in 276ms (Views: 84.4ms | ActiveRecord: 66.3ms)
+I, [2015-02-26T19:13:04.113833 #30036]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:13:04 +0900
+I, [2015-02-26T19:13:04.121071 #30036]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:13:04.121146 #30036]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:13:04.367275 #30036]  INFO -- :   Rendered gallery/_pictures.html.erb (41.7ms)
+I, [2015-02-26T19:13:04.367511 #30036]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (70.7ms)
+I, [2015-02-26T19:13:04.370795 #30036]  INFO -- : Completed 200 OK in 250ms (Views: 75.6ms | ActiveRecord: 61.4ms)
+I, [2015-02-26T19:15:07.223818 #30105]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:15:07 +0900
+I, [2015-02-26T19:15:07.231289 #30105]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:15:07.231372 #30105]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:15:07.499773 #30105]  INFO -- :   Rendered gallery/_pictures.html.erb (42.7ms)
+I, [2015-02-26T19:15:07.500015 #30105]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (73.2ms)
+I, [2015-02-26T19:15:07.503352 #30105]  INFO -- : Completed 200 OK in 272ms (Views: 78.3ms | ActiveRecord: 67.4ms)
+I, [2015-02-26T19:16:10.164750 #30156]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:16:10 +0900
+I, [2015-02-26T19:16:10.172684 #30156]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:16:10.172755 #30156]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:16:10.436122 #30156]  INFO -- :   Rendered gallery/_pictures.html.erb (40.9ms)
+I, [2015-02-26T19:16:10.436348 #30156]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (70.1ms)
+I, [2015-02-26T19:16:10.439640 #30156]  INFO -- : Completed 200 OK in 267ms (Views: 75.1ms | ActiveRecord: 67.3ms)
+I, [2015-02-26T19:16:32.275517 #30197]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:16:32 +0900
+I, [2015-02-26T19:16:32.283412 #30197]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:16:32.283581 #30197]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:16:32.545153 #30197]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T19:16:32.545353 #30197]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (30.1ms)
+I, [2015-02-26T19:16:32.548712 #30197]  INFO -- : Completed 200 OK in 265ms (Views: 35.2ms | ActiveRecord: 66.1ms)
+I, [2015-02-26T19:19:41.110445 #30277]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:19:41 +0900
+I, [2015-02-26T19:19:41.120845 #30277]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:19:41.120933 #30277]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:19:41.383948 #30277]  INFO -- :   Rendered gallery/_pictures.html.erb (40.9ms)
+I, [2015-02-26T19:19:41.384179 #30277]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (71.0ms)
+I, [2015-02-26T19:19:41.387315 #30277]  INFO -- : Completed 200 OK in 266ms (Views: 75.8ms | ActiveRecord: 70.5ms)
+I, [2015-02-26T19:20:41.716299 #30330]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:20:41 +0900
+I, [2015-02-26T19:20:41.723824 #30330]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:20:41.723905 #30330]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:20:42.202997 #30330]  INFO -- :   Rendered gallery/_pictures.html.erb (1.5ms)
+I, [2015-02-26T19:20:42.203279 #30330]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (27.3ms)
+I, [2015-02-26T19:20:42.206823 #30330]  INFO -- : Completed 200 OK in 483ms (Views: 32.6ms | ActiveRecord: 112.1ms)
+I, [2015-02-26T19:20:56.178142 #30330]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:20:56 +0900
+I, [2015-02-26T19:20:56.179526 #30330]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:20:56.179645 #30330]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:20:56.535745 #30330]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-26T19:20:56.535982 #30330]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (5.6ms)
+I, [2015-02-26T19:20:56.538082 #30330]  INFO -- : Completed 200 OK in 358ms (Views: 8.0ms | ActiveRecord: 110.4ms)
+I, [2015-02-26T19:21:37.998002 #30381]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:21:37 +0900
+I, [2015-02-26T19:21:38.013025 #30381]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:21:38.013203 #30381]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:21:38.304648 #30381]  INFO -- :   Rendered gallery/_pictures.html.erb (45.8ms)
+I, [2015-02-26T19:21:38.304945 #30381]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (76.6ms)
+I, [2015-02-26T19:21:38.308510 #30381]  INFO -- : Completed 200 OK in 295ms (Views: 81.9ms | ActiveRecord: 80.3ms)
+I, [2015-02-26T19:22:23.803576 #30429]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:22:23 +0900
+I, [2015-02-26T19:22:23.811484 #30429]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:22:23.811651 #30429]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:22:24.277401 #30429]  INFO -- :   Rendered gallery/_pictures.html.erb (1.4ms)
+I, [2015-02-26T19:22:24.282160 #30429]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (30.4ms)
+I, [2015-02-26T19:22:24.285722 #30429]  INFO -- : Completed 200 OK in 474ms (Views: 35.6ms | ActiveRecord: 111.4ms)
+I, [2015-02-26T19:24:30.577312 #30492]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:24:30 +0900
+I, [2015-02-26T19:24:30.584221 #30492]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:24:30.584310 #30492]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:24:30.713002 #30492]  INFO -- :   Rendered gallery/_pictures.html.erb (1.4ms)
+I, [2015-02-26T19:24:30.713187 #30492]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (25.0ms)
+I, [2015-02-26T19:24:30.716156 #30492]  INFO -- : Completed 200 OK in 132ms (Views: 29.7ms | ActiveRecord: 34.4ms)
+I, [2015-02-26T19:25:04.603150 #30533]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:25:04 +0900
+I, [2015-02-26T19:25:04.611285 #30533]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:25:04.611386 #30533]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:25:04.757633 #30533]  INFO -- :   Rendered gallery/_pictures.html.erb (1.5ms)
+I, [2015-02-26T19:25:04.757861 #30533]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (27.8ms)
+I, [2015-02-26T19:25:04.761498 #30533]  INFO -- : Completed 200 OK in 150ms (Views: 33.4ms | ActiveRecord: 39.0ms)
+I, [2015-02-26T19:25:36.317481 #30583]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:25:36 +0900
+I, [2015-02-26T19:25:36.325593 #30583]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:25:36.325675 #30583]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:25:36.487504 #30583]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T19:25:36.487773 #30583]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (27.4ms)
+I, [2015-02-26T19:25:36.491218 #30583]  INFO -- : Completed 200 OK in 165ms (Views: 32.6ms | ActiveRecord: 54.5ms)
+I, [2015-02-26T19:27:38.595912 #30644]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:27:38 +0900
+I, [2015-02-26T19:27:38.604211 #30644]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:27:38.604353 #30644]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:27:38.816395 #30644]  INFO -- : Completed 500 Internal Server Error in 212ms
+I, [2015-02-26T19:33:12.265276 #30828]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:33:12 +0900
+I, [2015-02-26T19:33:12.272633 #30828]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:33:12.272717 #30828]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:33:12.444516 #30828]  INFO -- : Completed 500 Internal Server Error in 172ms
+F, [2015-02-26T19:33:12.447502 #30828] FATAL -- : 
+NameError (undefined local variable or method `tmo' for #<GalleryController:0x007f3f5eccd568>):
+  app/controllers/gallery_controller.rb:80:in `block in home'
+  app/controllers/gallery_controller.rb:79:in `home'
+
+
+I, [2015-02-26T19:33:15.215028 #30828]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:33:15 +0900
+I, [2015-02-26T19:33:15.216374 #30828]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:33:15.216448 #30828]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:33:15.344273 #30828]  INFO -- : Completed 500 Internal Server Error in 128ms
+F, [2015-02-26T19:33:15.346774 #30828] FATAL -- : 
+NameError (undefined local variable or method `tmo' for #<GalleryController:0x007f3f5c839238>):
+  app/controllers/gallery_controller.rb:80:in `block in home'
+  app/controllers/gallery_controller.rb:79:in `home'
+
+
+I, [2015-02-26T19:33:17.251216 #30828]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:33:17 +0900
+I, [2015-02-26T19:33:17.252584 #30828]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:33:17.253287 #30828]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:33:17.345026 #30828]  INFO -- : Completed 500 Internal Server Error in 92ms
+F, [2015-02-26T19:33:17.347885 #30828] FATAL -- : 
+NameError (undefined local variable or method `tmo' for #<GalleryController:0x007f3f5e683a90>):
+  app/controllers/gallery_controller.rb:80:in `block in home'
+  app/controllers/gallery_controller.rb:79:in `home'
+
+
+I, [2015-02-26T19:33:56.578843 #30868]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:33:56 +0900
+I, [2015-02-26T19:33:56.586828 #30868]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:33:56.586904 #30868]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:33:56.801349 #30868]  INFO -- : Completed 500 Internal Server Error in 214ms
+I, [2015-02-26T19:35:01.649423 #30947]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 19:35:01 +0900
+I, [2015-02-26T19:35:01.660150 #30947]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T19:35:01.660281 #30947]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T19:35:01.960258 #30947]  INFO -- :   Rendered gallery/_pictures.html.erb (1.6ms)
+I, [2015-02-26T19:35:01.960618 #30947]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (30.7ms)
+I, [2015-02-26T19:35:01.963822 #30947]  INFO -- : Completed 200 OK in 303ms (Views: 35.8ms | ActiveRecord: 74.3ms)
+I, [2015-02-26T20:00:39.571038 #32272]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 20:00:39 +0900
+I, [2015-02-26T20:00:39.581830 #32272]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:00:39.581998 #32272]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T20:00:39.648788 #32272]  INFO -- :   Rendered gallery/_pictures.html.erb (1.9ms)
+I, [2015-02-26T20:00:39.649117 #32272]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (23.4ms)
+I, [2015-02-26T20:00:39.653411 #32272]  INFO -- : Completed 200 OK in 71ms (Views: 29.8ms | ActiveRecord: 5.4ms)
+I, [2015-02-26T20:00:42.874694 #32272]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 20:00:42 +0900
+I, [2015-02-26T20:00:42.876038 #32272]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:00:42.876114 #32272]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T20:00:42.917691 #32272]  INFO -- :   Rendered gallery/_pictures.html.erb (0.1ms)
+I, [2015-02-26T20:00:42.917917 #32272]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (1.4ms)
+I, [2015-02-26T20:00:42.919928 #32272]  INFO -- : Completed 200 OK in 44ms (Views: 3.8ms | ActiveRecord: 8.2ms)
+I, [2015-02-26T20:04:14.065654 #32672]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON" for 10.33.87.173 at 2015-02-26 20:04:14 +0900
+I, [2015-02-26T20:04:14.073266 #32672]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:04:14.073363 #32672]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON"}
+I, [2015-02-26T20:04:14.274987 #32672]  INFO -- :   Rendered gallery/_pictures.html.erb (1.9ms)
+I, [2015-02-26T20:04:14.277625 #32672]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (38.4ms)
+I, [2015-02-26T20:04:14.281841 #32672]  INFO -- : Completed 200 OK in 208ms (Views: 44.5ms | ActiveRecord: 73.7ms)
+I, [2015-02-26T20:05:03.744866 #32672]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=%EC%9D%B4%EC%99%80%ED%85%8C" for 10.33.87.173 at 2015-02-26 20:05:03 +0900
+I, [2015-02-26T20:05:03.746605 #32672]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:05:03.746731 #32672]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"이와테"}
+I, [2015-02-26T20:05:03.914796 #32672]  INFO -- :   Rendered gallery/_pictures.html.erb (2.8ms)
+I, [2015-02-26T20:05:03.915057 #32672]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (15.7ms)
+I, [2015-02-26T20:05:03.917120 #32672]  INFO -- : Completed 200 OK in 170ms (Views: 18.1ms | ActiveRecord: 61.3ms)
+I, [2015-02-26T20:10:25.661962 #32784]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=%EC%9D%B4%EC%99%80%ED%85%8C" for 10.33.87.173 at 2015-02-26 20:10:25 +0900
+I, [2015-02-26T20:10:25.670168 #32784]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:10:25.670295 #32784]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"이와테"}
+I, [2015-02-26T20:10:25.844402 #32784]  INFO -- :   Rendered gallery/_pictures.html.erb (5.1ms)
+I, [2015-02-26T20:10:25.844690 #32784]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (36.5ms)
+I, [2015-02-26T20:10:25.848331 #32784]  INFO -- : Completed 200 OK in 178ms (Views: 41.8ms | ActiveRecord: 61.6ms)
+I, [2015-02-26T20:10:42.044252 #32784]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=bbq" for 10.33.87.173 at 2015-02-26 20:10:42 +0900
+I, [2015-02-26T20:10:42.046390 #32784]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:10:42.046463 #32784]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"bbq"}
+I, [2015-02-26T20:10:42.209399 #32784]  INFO -- :   Rendered gallery/_pictures.html.erb (2.9ms)
+I, [2015-02-26T20:10:42.209683 #32784]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (57.4ms)
+I, [2015-02-26T20:10:42.211733 #32784]  INFO -- : Completed 200 OK in 165ms (Views: 59.8ms | ActiveRecord: 63.2ms)
+I, [2015-02-26T20:10:46.704956 #32784]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=2&tag_name=%E7%99%92%E3%81%97" for 10.33.87.173 at 2015-02-26 20:10:46 +0900
+I, [2015-02-26T20:10:46.706227 #32784]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:10:46.706307 #32784]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"2", "tag_name"=>"癒し"}
+I, [2015-02-26T20:10:46.811739 #32784]  INFO -- :   Rendered gallery/_pictures.html.erb (1.7ms)
+I, [2015-02-26T20:10:46.812012 #32784]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (13.8ms)
+I, [2015-02-26T20:10:46.814202 #32784]  INFO -- : Completed 200 OK in 108ms (Views: 16.3ms | ActiveRecord: 56.8ms)
+I, [2015-02-26T20:19:35.801468 #32930]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=2&tag_name=%E7%99%92%E3%81%97" for 10.33.87.173 at 2015-02-26 20:19:35 +0900
+I, [2015-02-26T20:19:35.809265 #32930]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:19:35.809347 #32930]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"2", "tag_name"=>"癒し"}
+I, [2015-02-26T20:19:36.133702 #32930]  INFO -- :   Rendered gallery/_pictures.html.erb (5.1ms)
+I, [2015-02-26T20:19:36.133936 #32930]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (37.1ms)
+I, [2015-02-26T20:19:36.137811 #32930]  INFO -- : Completed 200 OK in 328ms (Views: 42.7ms | ActiveRecord: 215.1ms)
+I, [2015-02-26T20:19:40.325231 #32930]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Ocean" for 10.33.87.173 at 2015-02-26 20:19:40 +0900
+I, [2015-02-26T20:19:40.326929 #32930]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:19:40.327018 #32930]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Ocean"}
+I, [2015-02-26T20:19:40.669831 #32930]  INFO -- :   Rendered gallery/_pictures.html.erb (4.7ms)
+I, [2015-02-26T20:19:40.670092 #32930]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (18.3ms)
+I, [2015-02-26T20:19:40.672733 #32930]  INFO -- : Completed 200 OK in 346ms (Views: 21.3ms | ActiveRecord: 265.9ms)
+I, [2015-02-26T20:19:47.265939 #32930]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=%E3%83%A9%E3%83%B3%E3%83%81" for 10.33.87.173 at 2015-02-26 20:19:47 +0900
+I, [2015-02-26T20:19:47.267174 #32930]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:19:47.267263 #32930]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"ランチ"}
+I, [2015-02-26T20:19:47.517184 #32930]  INFO -- :   Rendered gallery/_pictures.html.erb (2.4ms)
+I, [2015-02-26T20:19:47.517436 #32930]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (14.3ms)
+I, [2015-02-26T20:19:47.519675 #32930]  INFO -- : Completed 200 OK in 252ms (Views: 16.8ms | ActiveRecord: 204.5ms)
+I, [2015-02-26T20:20:31.107978 #32982]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_tag=1&tag_name=%E3%83%A9%E3%83%B3%E3%83%81" for 10.33.87.173 at 2015-02-26 20:20:31 +0900
+I, [2015-02-26T20:20:31.115945 #32982]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:20:31.116087 #32982]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_tag"=>"1", "tag_name"=>"ランチ"}
+I, [2015-02-26T20:20:31.430848 #32982]  INFO -- :   Rendered gallery/_pictures.html.erb (5.8ms)
+I, [2015-02-26T20:20:31.431114 #32982]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (37.7ms)
+I, [2015-02-26T20:20:31.434709 #32982]  INFO -- : Completed 200 OK in 318ms (Views: 42.9ms | ActiveRecord: 206.2ms)

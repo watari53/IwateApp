@@ -49,23 +49,23 @@ class GalleryController < ApplicationController
     end
 
     #場面タグリストを作成
-    scenecounts = Scenecount.where('count > ?',10)
+    scenecounts = Scenecount.where('count > ?',10).order("count DESC").limit(20)
+    scenes = searchTableOr(Scene,"text",scenecounts)
     selected_scene_number = 0
-    scenecounts.each do |scenecount|
+    scenes.each do |s|
       scene_hash = {}
-      tmp_scene = Scene.where(text:scenecount.text).first
-      scene_jp = translateSceneToJP(tmp_scene.text)
+      scene_jp = translateSceneToJP(s.text)
 
       if scene_jp == ""
         next
       end
 
       scene_hash["sceneJP"] = scene_jp
-      scene_hash["sceneEN"] = tmp_scene.text
+      scene_hash["sceneEN"] = s.text
 
       @scenes << scene_hash
 
-      if tmp_scene.text == params[:scene_name]
+      if s.text == params[:scene_name]
         @selected_scene_page = selected_scene_number / 10 + 1
       else
         selected_scene_number += 1
@@ -73,19 +73,13 @@ class GalleryController < ApplicationController
     end
 
     #ハッシュタグリストを作成
-    tagcounts_tmp = Tagcount.where('count > ?',10)
+    tagcounts = Tagcount.where('count > ?',10).order("count DESC").limit(20)
 
-    tagcounts = []
-    tagcounts_tmp.each do |tmp|
-      if tmp.count.to_i > 100
-        tagcounts << tmp
-      end
-    end
+   @tags = searchTableOr(Tag,"text",tagcounts)
 
     selected_tag_number = 0
-    tagcounts.each do |tagcount|
-      @tags << Tag.where(text:tagcount.text).first
 
+    tagcounts.each do |tagcount|
       if tagcount.text == params[:tag_name]
         @selected_tag_page = selected_tag_number / 10 + 1
       else
@@ -196,5 +190,26 @@ class GalleryController < ApplicationController
 
   def escape_like(string)
     return string.gsub(/[\\%_]/){|m| "\\#{m}"}
+  end
+
+  #creating sql of or
+  def searchTableOr(table,keyword,words)
+    table_define = table.arel_table
+
+    sql = ""
+
+    words.each do | word |
+      if sql == ""
+        sql = table_define[keyword].eq(word.text)
+      else
+        sql = sql.or(table_define[keyword].eq(word.text))
+      end
+    end
+
+    result = table.where(sql).select(keyword).uniq!
+    result.each do |r|
+      puts r.text
+    end
+    return result
   end
 end
