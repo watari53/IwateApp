@@ -878,3 +878,15 @@ I, [2015-02-26T20:20:31.116087 #32982]  INFO -- :   Parameters: {"lat"=>"LAT", "
 I, [2015-02-26T20:20:31.430848 #32982]  INFO -- :   Rendered gallery/_pictures.html.erb (5.8ms)
 I, [2015-02-26T20:20:31.431114 #32982]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (37.7ms)
 I, [2015-02-26T20:20:31.434709 #32982]  INFO -- : Completed 200 OK in 318ms (Views: 42.9ms | ActiveRecord: 206.2ms)
+I, [2015-02-26T20:25:43.757933 #32982]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Park" for 10.33.87.173 at 2015-02-26 20:25:43 +0900
+I, [2015-02-26T20:25:43.759596 #32982]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:25:43.759661 #32982]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Park"}
+I, [2015-02-26T20:25:44.038884 #32982]  INFO -- :   Rendered gallery/_pictures.html.erb (1.7ms)
+I, [2015-02-26T20:25:44.039109 #32982]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (12.2ms)
+I, [2015-02-26T20:25:44.040812 #32982]  INFO -- : Completed 200 OK in 281ms (Views: 14.2ms | ActiveRecord: 183.5ms)
+I, [2015-02-26T20:25:56.177752 #32982]  INFO -- : Started GET "/gallery/home?lat=LAT&lon=LON&pagination_number_scene=1&scene_name=Mountain" for 10.33.87.173 at 2015-02-26 20:25:56 +0900
+I, [2015-02-26T20:25:56.178901 #32982]  INFO -- : Processing by GalleryController#home as HTML
+I, [2015-02-26T20:25:56.178967 #32982]  INFO -- :   Parameters: {"lat"=>"LAT", "lon"=>"LON", "pagination_number_scene"=>"1", "scene_name"=>"Mountain"}
+I, [2015-02-26T20:25:56.481923 #32982]  INFO -- :   Rendered gallery/_pictures.html.erb (2.3ms)
+I, [2015-02-26T20:25:56.482167 #32982]  INFO -- :   Rendered gallery/home.html.erb within layouts/application (15.1ms)
+I, [2015-02-26T20:25:56.484358 #32982]  INFO -- : Completed 200 OK in 305ms (Views: 17.5ms | ActiveRecord: 218.3ms)
