@@ -51,7 +51,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-custom navbar-fixed-top">
+    <div class="navbar navbar-custom navbar-fixed-top">
         <div class="navbar-header">
           <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -68,8 +68,14 @@
             <li><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></li>
             <li><%= link_to "写真から探す", {:controller => :gallery, :action => :home, :lat => "LAT", :lon => "LON"} %></li>
           </ul>
+<form class="navbar-form pull-right" role="search">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search">
+    </div>
+</form>
+
         </div> <!-- /.navbar-collapse -->
-    </nav>
+    </div>
     <%= yield %>
     <footer>
       <!--<p>&copy; W & S Company 2014</p>-->
