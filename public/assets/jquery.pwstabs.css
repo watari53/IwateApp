@@ -205,7 +205,7 @@
 .pws_tabs_list{
    display: block;
    background-color: #fff;
-   height: auto;
+   height: 150px;
    padding: 20px;
    padding: 1.25em; /* @1.2.0 */
    box-sizing: border-box;

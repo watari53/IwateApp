@@ -109,7 +109,7 @@
          } else if (this.settings.effect == 'slideright') {
             $(pwsTabs).addClass('pws_tabs_slide_right_hide');
          } else if (this.settings.effect == 'slidetop') {
-            $(pwsTabs).addClass('pws_tabs_slide_top_hide');  
+            $(pwsTabs).addClass('pws_tabs_slide_top_hide');
          } else if (this.settings.effect == 'slidedown') {
             $(pwsTabs).addClass('pws_tabs_slide_down_hide');
          } else if (this.settings.effect == 'none') {
@@ -143,7 +143,7 @@
          */
          var pwsTabsDataCounter = '1';
          this.$elem.children('[data-pws-tab]').each(function(){
-            
+
             // Set Data attributes with tab id number 1+
             $(this).attr('data-pws-tab-id', pwsTabsDataCounter);
 
@@ -225,7 +225,7 @@
          * #############################################
          */
          this.$elem.parent().find('ul li a[data-tab-id="' + this.$elem.find('[data-pws-tab-id="' + this.settings.defaultTab + '"]').data('pws-tab') + '"]').addClass('pws_tab_active');
-         
+
          /**
          * #############################################
          * Check if a Tab controll has icon data @1.1.4
@@ -340,7 +340,7 @@
 
                // Check window width if less than 60em ( 960px ) then:
                if( $(window).width() <= 960 ){
-            
+
                   // Remove container width style
                   pwsResponsiveContentBlock.parent().width('');
 
@@ -365,13 +365,13 @@
                      // Add new button to trigger tabs menu
                      $('<div class="pws_responsive_small_menu"><a href="#" data-visible="0"><i class="fa fa-bars"></i></a></div>').insertBefore(pwsResponsiveControllsUl);
                   }
-               
+
                   // Add new class to UL controll
                   pwsResponsiveControllsUl.addClass('pws_tabs_menu_popup');
-               
+
                   pwsResponsiveControllA.height('');
                   pwsResponsiveControllLi.width('');
-               
+
                   // Hide popup menu
                   pwsResponsiveContentBlock.parent().find('ul.pws_tabs_menu_popup').hide();
 

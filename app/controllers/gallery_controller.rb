@@ -42,7 +42,7 @@ class GalleryController < ApplicationController
       @near_albums_title_list[album.album_id] = "#{album.title}"
 
       if album.title == params[:album_title]
-        @selected_near_page = selected_near_number / 10 + 1
+        @selected_near_page = (selected_near_number/5.to_f).ceil
       else
         selected_near_number += 1
       end
@@ -66,7 +66,7 @@ class GalleryController < ApplicationController
       @scenes << scene_hash
 
       if s.text == params[:scene_name]
-        @selected_scene_page = selected_scene_number / 10 + 1
+        @selected_scene_page = (selected_scene_number/5.to_f).ceil
       else
         selected_scene_number += 1
       end
@@ -81,7 +81,7 @@ class GalleryController < ApplicationController
 
     tagcounts.each do |tagcount|
       if tagcount.text == params[:tag_name]
-        @selected_tag_page = selected_tag_number / 10 + 1
+        @selected_tag_page = (selected_tag_number/5.to_f).ceil
       else
         selected_tag_number += 1
       end

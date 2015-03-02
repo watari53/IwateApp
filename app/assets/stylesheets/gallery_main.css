@@ -1,6 +1,15 @@
 .pws_tabs_controll {
  margin-top:70px;
+}
 
+#tag_list {
+  width:100%;
+}
+
+li.search_button {
+  list-style: none;
+  display: inline-block;
+  margin: 0 5px 5px 5px;
 }
 
 .og-grid {

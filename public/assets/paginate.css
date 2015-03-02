@@ -2,7 +2,7 @@
     height:34px;
     position:relative;
     color:#a5a5a5;
-    font-size:small;
+    font-size:medium;
  width:100%;
 }
 .jPaginate a{
@@ -25,8 +25,7 @@
     cursor:pointer;
 }
 ul.jPag-pages{
-  width: auto;
-    width:150px;
+    width:100%;
     float:left;
     list-style-type:none;
     margin:0px 0px 0px 0px;
