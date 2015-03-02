@@ -6,8 +6,8 @@ require "rekognize"
 
 RestClient.proxy = ENV['http_proxy']
 
-api_key_list = ["i86Sx2UnPTwhkTtS",""]
-api_secret_list = ["VuGF9D31Arak0lHH",""]
+api_key_list = ["5V0drEl6m7lGPczw",""]
+api_secret_list = ["16An6mg2lFvDUVc2",""]
 array_number = 0
 api_key    = api_key_list[array_number]
 api_secret = api_secret_list[array_number]
