@@ -12,6 +12,16 @@ li.search_button {
   margin: 0 5px 5px 5px;
 }
 
+p.detail_box {
+  overflow:auto;
+  width:300px; height:100px;
+  padding:5px;
+  border:2px dotted #ffffff;
+  color:#e8e8e8;
+  background-color:#5bc6ed;
+  line-height:1.5em;
+}
+
 .og-grid {
  list-style: none;
  padding: 20px 0;

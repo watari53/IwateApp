@@ -353,7 +353,7 @@ var Grid = (function() {
 
    // create Preview structure:
    this.$title = $( '<h3></h3>' );
-   this.$description = $( '<p></p>' );
+   this.$description = $( '<p class="detail_box"></p>' );
    this.$href = $( '<a onclick=fromhere('+ eldata.href.split("dstlat")[1].split("&")[0].split("=")[1] +','+ eldata.href.split("dstlng")[1].split("&")[0].split("=")[1] +'); >現在地からの地図を見る</a>' );
    //<a onclick='fromhere(<%=@destination_lat%>,<%=@destination_lng%>);' >現在地からの地図を見る</a>
    //this.$href = $( '<a href="#">撮影場所への道順</a>' );
