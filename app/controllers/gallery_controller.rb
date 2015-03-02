@@ -90,7 +90,7 @@ class GalleryController < ApplicationController
     picture_max_count = 15
     picture_count = 1
 
-    if params[:tag_name] == nil and params[:scene_name] == nil and params[:search][:keyword] == nil
+    if params[:tag_name] == nil and params[:scene_name] == nil and params[:search] == nil
       @selected_tab = 1
       if params[:album_title] != nil
         @selected_word = params[:album_title]
@@ -105,7 +105,8 @@ class GalleryController < ApplicationController
         end
         end
       end
-    elsif params[:search][:keyword] != nil
+    elsif params[:search] != nil
+      @searched_keyword = params[:search][:keyword]
       @pictures = Picture.where("title LIKE ?", "%#{escape_like(params[:search][:keyword])}%").limit(picture_max_count)
     elsif params[:scene_name] != nil
       @selected_tab = 3

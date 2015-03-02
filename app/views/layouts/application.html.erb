@@ -69,13 +69,15 @@
             <li><%= link_to "写真から探す", {:controller => :gallery, :action => :home, :lat => "LAT", :lon => "LON"} %></li>
           </ul>
 
-
           <div class="navbar-form pull-right" role="search">
             <%= form_tag( { controller: :gallery, action: :home},id: :name, class: :name) do %>
-            <%= text_field_tag "search[keyword]" ,"",placeholder:"単語検索",class:"form-control"%>
+            <% if @searched_keyword == nil%>
+              <%= text_field_tag "search[keyword]" ,"",placeholder:"単語検索",class:"form-control"%>
+            <% else %>
+              <%= text_field_tag "search[keyword]" ,"",placeholder:@searched_keyword,class:"form-control"%>
+            <% end %>
           <% end %>
         </div>
-
 
  </div> <!-- /.navbar-collapse -->
     </div>
