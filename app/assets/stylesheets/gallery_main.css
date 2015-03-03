@@ -16,9 +16,15 @@ p.detail_box {
   overflow:auto;
   height:180px;
   padding:5px;
-  border: 1px solid #4c4c4c; 
-  border-top: 3px solid #4c4c4c;      
+  border: 1px solid #4c4c4c;
+  border-top: 3px solid #4c4c4c;
   padding: 20px;
+}
+
+.pagetop {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
 }
 
 .og-grid {
