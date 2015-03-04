@@ -1,137 +1,145 @@
-<link type="text/css" rel="stylesheet" href="/assets/font-awesome-4.2.0/css/font-awesome.min.css">
-
-<div id = "gallery">
-<div class="container_gallery">
-<div class="main">
-
 <% near_section_number = 5 %>
 <% tag_section_number = 5 %>
 <% scene_section_number = 5 %>
-
 <% @near_list_count = 0 %>
 <% @near_page_number = 1%>
-<div class="hello_world">
-   <div data-pws-tab="anynameyouwant1" data-pws-tab-name="周辺検索" data-pws-tab-icon="fa fa-map-marker" >
-     <div id = "near_list">
-     <% if @near_albums_title_list.size > near_section_number%>
-       <div id="demo2"></div>
-     <% end %>
-     <div id="paginationdemo2" class="demo">
-       <% if @selected_near_page == @near_page_number %>
-         <div id ="n1" class="nowview" style ="">
-       <% else %>
-         <div id ="n1" class="" style ="display:none;">
-       <% end %>
-         <% @near_albums_title_list.each {|album_id, album_title| %>
-          <% if @selected_word == album_title %>
-            <li class ="search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %></li>
-          <% else %>
-            <li class = "search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %></li>
-          <% end %>
-         <% @near_list_count = @near_list_count + 1%>
-       <% if @near_list_count % near_section_number == 0 %>
-         </div>
-         <%@near_page_number = @near_page_number + 1 %>
-         <% if @selected_scene_page == @near_page_number %>
-           <div id="n<%=@near_page_number%>" class="nowview" style="">
-         <% else %>
-           <div id="n<%=@near_page_number%>" class="" style="display:none;">
-         <% end %>
-       <% end %>
-       <% } %>
-     </div>
-     </div>
-     </div>
-   </div>
+<% @tag_list_count = 0 %>
+<% @tag_page_number = 1%>
+<% @scene_list_count = 0 %>
+<% @scene_page_number = 1%>
 
-   <% @tag_list_count = 0 %>
-   <% @tag_page_number = 1%>
-   <div data-pws-tab="anynameyouwant2" data-pws-tab-name="タグ検索" data-pws-tab-icon="fa fa-tag">
-     <div id = "tag_list">
-       <% if @tags.size > tag_section_number %>
-          <div id="demo1"></div>
-       <% end %>
-       <div id="paginationdemo" class="demo">
-       <% if @selected_tag_page == @tag_page_number %>
-         <div id ="p1" class="current" style ="">
-       <% else %>
-         <div id ="p1" class="" style ="display:none;">
-         <% end %>
-         <% @tags.each do |tag| %>
-          <% if @selected_word == tag.text %>
-            <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %></li>
-          <% else %>
-            <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %></li>
-          <% end %>
-         <% @tag_list_count = @tag_list_count + 1%>
-       <% if @tag_list_count % tag_section_number == 0 %>
-         </div>
-         <%@tag_page_number = @tag_page_number + 1 %>
-         <% if @selected_tag_page == @tag_page_number %>
-           <div id="p<%=@tag_page_number%>" class="current" style="">
-         <% else %>
-           <div id="p<%=@tag_page_number%>" class="" style="display:none;">
-         <% end %>
-       <% end %>
-     <% end %>
-   </div>
-       </div>
-     </div>
-   </div>
+<div id = "gallery">
+  <div class="container_gallery">
+    <div class="main">
+      <div id="tabs" class="tabs">
+        <nav>
+          <ul>
+            <li><a href="#section-1" class="icon-near"><span>Near</span></a></li>
+            <li><a href="#section-2" class="icon-tag"><span>Tag</span></a></li>
+            <li><a href="#section-3" class="icon-scene"><span>Scene</span></a></li>
+          </ul>
+	</nav>
+        <div class="content">
+          <section id="section-1">
+            <div class="mediabox">
+              <div id = "near_list">
+                <% if @near_albums_title_list.size > near_section_number%>
+                  <div id="demo2"></div>
+                <% end %>
+                <div id="paginationdemo2" class="demo">
+                  <% if @selected_near_page == @near_page_number %>
+                    <div id ="n1" class="nowview" style ="">
+                  <% else %>
+                    <div id ="n1" class="" style ="display:none;">
+                  <% end %>
+                  <% @near_albums_title_list.each {|album_id, album_title| %>
+                  <% if @selected_word == album_title %>
+                    <li class ="search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %></li>
+                    <% else %>
+                      <li class = "search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %></li>
+                    <% end %>
+                    <% @near_list_count = @near_list_count + 1%>
+                    <% if @near_list_count % near_section_number == 0 %>
+                      </div>
+                      <%@near_page_number = @near_page_number + 1 %>
+                      <% if @selected_scene_page == @near_page_number %>
+                        <div id="n<%=@near_page_number%>" class="nowview" style="">
+                      <% else %>
+                        <div id="n<%=@near_page_number%>" class="" style="display:none;">
+                      <% end %>
+                    <% end %>
+                  <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </section>
 
-   <% @scene_list_count = 0 %>
-   <% @scene_page_number = 1%>
-   <div data-pws-tab="anynameyouwant3" data-pws-tab-name="場面検索" data-pws-tab-icon="fa fa-home">
-     <div id = "scene_list">
-       <% if @scenes.size > scene_section_number%>
-         <div id="demo3"></div>
-       <% end %>
-       <div id="paginationdemo3" class="demo">
-         <% if @selected_scene_page == @scene_page_number %>
-           <div id ="s1" class="now" style ="">
-         <% else %>
-           <div id ="s1" class="" style ="display:none;">
-         <%end%>
-        <% @scenes.each do |scene| %>
-          <% if @selected_word == scene["sceneJP"] %>
-            <li class="search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-primary"} %></li>
-          <% else %>
-            <li class = "search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-info"} %></li>
-          <% end %>
-          <% @scene_list_count = @scene_list_count + 1%>
-       <% if @scene_list_count % scene_section_number == 0 %>
-         </div>
-         <%@scene_page_number = @scene_page_number + 1 %>
-         <% if @selected_scene_page == @scene_page_number %>
-           <div id="s<%=@scene_page_number%>" class="now" style="">
-         <% else %>
-           <div id ="s<%=@scene_page_number%>" class="" style ="display:none;">
-         <%end%>
+            <section id="section-2">
+              <div class="mediabox">
+                <div id = "tag_list">
+                  <% if @tags.size > tag_section_number %>
+                    <div id="demo1"></div>
+                  <% end %>
+                  <div id="paginationdemo" class="demo">
+                    <% if @selected_tag_page == @tag_page_number %>
+                      <div id ="p1" class="current" style ="">
+                    <% else %>
+                      <div id ="p1" class="" style ="display:none;">
+                    <% end %>
+                    <% @tags.each do |tag| %>
+                      <% if @selected_word == tag.text %>
+                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %></li>
+                      <% else %>
+                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %></li>
+                      <% end %>
+                      <% @tag_list_count = @tag_list_count + 1%>
+                        <% if @tag_list_count % tag_section_number == 0 %>
+                          </div>
+                          <%@tag_page_number = @tag_page_number + 1 %>
+                          <% if @selected_tag_page == @tag_page_number %>
+                            <div id="p<%=@tag_page_number%>" class="current" style="">
+                          <% else %>
+                            <div id="p<%=@tag_page_number%>" class="" style="display:none;">
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-       <% end %>
-     <% end %>
-     </div>
-     </div>
-     </div>
-   </div>
+            <section id="section-3">
+              <div class="mediabox"> 
+                <div id = "scene_list">
+                  <% if @scenes.size > scene_section_number%>
+                    <div id="demo3"></div>
+                  <% end %>
+                  <div id="paginationdemo3" class="demo">
+                  <% if @selected_scene_page == @scene_page_number %>
+                    <div id ="s1" class="now" style ="">
+                  <% else %>
+                    <div id ="s1" class="" style ="display:none;">
+                  <%end%>
+                  <% @scenes.each do |scene| %>
+                    <% if @selected_word == scene["sceneJP"] %>
+                      <li class="search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-primary"} %></li>
+                    <% else %>
+                      <li class = "search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-info"} %></li>
+                    <% end %>
+                    <% @scene_list_count = @scene_list_count + 1%>
+                    <% if @scene_list_count % scene_section_number == 0 %>
+                      </div>
+                      <%@scene_page_number = @scene_page_number + 1 %>
+                      <% if @selected_scene_page == @scene_page_number %>
+                        <div id="s<%=@scene_page_number%>" class="now" style="">
+                      <% else %>
+                        <div id ="s<%=@scene_page_number%>" class="" style ="display:none;">
+                      <%end%>
+                    <% end %>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div><!-- /content -->
+    </div><!-- /tabs -->
+
+    <div class = "pictures_list">
+      <%= render partial:"pictures", locals:{pictures:@pictures,current_lat:@current_lat,current_lon:@current_lon} %>
+    </div>
+
+    <div class="pagetop"><a href="#gallery"><img src="/images/go_top.png"></a></div>
+    </div>
+  </div>
 </div>
 
-<div class = "pictures_list">
-<%= render partial:"pictures", locals:{pictures:@pictures,current_lat:@current_lat,current_lon:@current_lon} %>
-</div>
-
-<div class="pagetop"><a href="#gallery"><img src="/images/go_top.png"></a></div>
-
-<link type="text/css" rel="stylesheet" href="/assets/jquery.pwstabs.css">
-<script src="/assets/jquery.pwstabs-1.2.0.js"></script>
+<script src="/assets/cbpFWTabs.js"></script>
 <script>
-jQuery(document).ready(function($){
-   $('.hello_world').pwstabs({
-   effect: 'slideright',
-   containerWidth: '100%',
-   theme: 'pws_theme_green',
-   defaultTab: <%= @selected_tab %>});
-});
+	new CBPFWTabs( document.getElementById( 'tabs' ) );
 </script>
 
 <script src="/assets/jquery.paginate.js" type="text/javascript"></script>
@@ -139,8 +147,8 @@ jQuery(document).ready(function($){
 <script>
 $(function() {
   $("#demo1").paginate({
-count : <%= (@tags.size/tag_section_number.to_f).ceil %>,
-start : <%=@selected_tag_page%>,
+  count : <%= (@tags.size/tag_section_number.to_f).ceil %>,
+  start : <%=@selected_tag_page%>,
   display : 5,
   border  : false,
   text_color : '#888',
@@ -160,8 +168,8 @@ start : <%=@selected_tag_page%>,
 <script>
 $(function() {
   $("#demo2").paginate({
-count : <%=(@near_albums_title_list.size/near_section_number.to_f).ceil %>,
-start : <%=@selected_near_page%>,
+  count : <%=(@near_albums_title_list.size/near_section_number.to_f).ceil %>,
+  start : <%=@selected_near_page%>,
   display : 5,
   border  : false,
   text_color : '#888',
@@ -179,8 +187,8 @@ start : <%=@selected_near_page%>,
 <script>
 $(function() {
   $("#demo3").paginate({
-count : <%= (@scenes.size/scene_section_number.to_f).ceil %>,
-start : <%= @selected_scene_page%>,
+  count : <%= (@scenes.size/scene_section_number.to_f).ceil %>,
+  start : <%= @selected_scene_page%>,
   display : 5,
   border  : false,
   text_color : '#888',
@@ -204,7 +212,3 @@ start : <%= @selected_scene_page%>,
       });
     });
 </script>
-
-</div>
-</div>
-</div>
