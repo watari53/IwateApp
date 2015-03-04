@@ -12,10 +12,6 @@ class GalleryController < ApplicationController
 
     @selected_tab  = 1 #選択されたタブ情報を格納する
 
-    @selected_tag_page = 1 #選択されたpagination番号を格納する
-    @selected_near_page = 1 #選択されたpagination番号を格納する
-    @selected_scene_page = 1 #選択されたpagination番号を格納する
-
     if params[:pagination_number_near] != nil
       @selected_near_page = params[:pagination_number_near]
     end
@@ -41,12 +37,6 @@ class GalleryController < ApplicationController
         next
       end
       @near_albums_title_list[album.album_id] = "#{album.title}"
-
-      if album.title == params[:album_title]
-        @selected_near_page = (selected_near_number/20.to_f).ceil
-      else
-        selected_near_number += 1
-      end
     end
 
     #場面タグリストを作成
@@ -65,12 +55,6 @@ class GalleryController < ApplicationController
       scene_hash["sceneEN"] = s.text
 
       @scenes << scene_hash
-
-      if s.text == params[:scene_name]
-        @selected_scene_page = (selected_scene_number/20.to_f).ceil
-      else
-        selected_scene_number += 1
-      end
     end
 
     #ハッシュタグリストを作成
@@ -80,19 +64,11 @@ class GalleryController < ApplicationController
 
     selected_tag_number = 0
 
-    tagcounts.each do |tagcount|
-      if tagcount.text == params[:tag_name]
-        @selected_tag_page = (selected_tag_number/20.to_f).ceil
-      else
-        selected_tag_number += 1
-      end
-    end
-
     picture_max_count = 15
     picture_count = 1
 
     if params[:tag_name] == nil and params[:scene_name] == nil and params[:search] == nil
-      @selected_tab = 1
+      @selected_tab = 0
       if params[:album_title] != nil
         @selected_word = params[:album_title]
       end
@@ -110,7 +86,7 @@ class GalleryController < ApplicationController
       @searched_keyword = params[:search][:keyword]
       @pictures = Picture.where("title LIKE ?", "%#{escape_like(params[:search][:keyword])}%").limit(picture_max_count)
     elsif params[:scene_name] != nil
-      @selected_tab = 3
+      @selected_tab = 2
       @selected_word = translateSceneToJP(params[:scene_name])
       scenes = Scene.where('text == ?',params[:scene_name])
       scenes.each do |scene|
@@ -121,7 +97,7 @@ class GalleryController < ApplicationController
         end
       end
     else
-      @selected_tab = 2
+      @selected_tab = 1
       @selected_word = params[:tag_name]
       tags = Tag.where('text == ?',params[:tag_name])
       tags.each do |tag|
