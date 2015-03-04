@@ -3,6 +3,7 @@ class GalleryController < ApplicationController
   def home
 
     near_threshold = 2000 #[m]　現在地から近いアルバムの距離に関するしきい値
+    tag_max_number = 20
 
     @current_lat = params[:lat] #現在位置の緯度
     @current_lon = params[:lon] #現在位置の経度
@@ -42,14 +43,14 @@ class GalleryController < ApplicationController
       @near_albums_title_list[album.album_id] = "#{album.title}"
 
       if album.title == params[:album_title]
-        @selected_near_page = (selected_near_number/5.to_f).ceil
+        @selected_near_page = (selected_near_number/20.to_f).ceil
       else
         selected_near_number += 1
       end
     end
 
     #場面タグリストを作成
-    scenecounts = Scenecount.where('count > ?',10).order("count DESC").limit(20)
+    scenecounts = Scenecount.where('count > ?',10).order("count DESC").limit(tag_max_number)
     scenes = searchTableOr(Scene,"text",scenecounts)
     selected_scene_number = 0
     scenes.each do |s|
@@ -66,14 +67,14 @@ class GalleryController < ApplicationController
       @scenes << scene_hash
 
       if s.text == params[:scene_name]
-        @selected_scene_page = (selected_scene_number/5.to_f).ceil
+        @selected_scene_page = (selected_scene_number/20.to_f).ceil
       else
         selected_scene_number += 1
       end
     end
 
     #ハッシュタグリストを作成
-    tagcounts = Tagcount.where('count > ?',10).order("count DESC").limit(20)
+    tagcounts = Tagcount.where('count > ?',10).order("count DESC").limit(tag_max_number)
 
    @tags = searchTableOr(Tag,"text",tagcounts)
 
@@ -81,7 +82,7 @@ class GalleryController < ApplicationController
 
     tagcounts.each do |tagcount|
       if tagcount.text == params[:tag_name]
-        @selected_tag_page = (selected_tag_number/5.to_f).ceil
+        @selected_tag_page = (selected_tag_number/20.to_f).ceil
       else
         selected_tag_number += 1
       end
