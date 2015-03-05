@@ -29,9 +29,9 @@
                 <div id = "tag_list">
                     <% @tags.each do |tag| %>
                       <% if @selected_word == tag.text %>
-                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %></li>
+                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--tamaya button--border-thick"} %></li>
                       <% else %>
-                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %></li>
+                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--wapasha button--round-s"} %></li>
                       <% end %>
                     <% end %>
                 </div>
