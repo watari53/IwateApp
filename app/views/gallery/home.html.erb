@@ -15,9 +15,9 @@
               <div id = "near_list">
                   <% @near_albums_title_list.each {|album_id, album_title| %>
                     <% if @selected_word == album_title %>
-                      <li class ="search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-primary"} %></li>
+                      <li class ="search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--ujarak2 button--border-medium button--round-s button--text-thick button--size-s "} %></li>
                     <% else %>
-                      <li class = "search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "tag btn btn-info"} %></li>
+                      <li class = "search_button"><%= link_to album_title, { :controller => :gallery, :action => :home, near_album_id:album_id, album_title:album_title,pagination_number_near:@near_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--ujarak button--border-medium button--round-s button--text-thin button--size-s"} %></li>
                     <% end %>
                   <% } %>
               </div>
@@ -29,9 +29,9 @@
                 <div id = "tag_list">
                     <% @tags.each do |tag| %>
                       <% if @selected_word == tag.text %>
-                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--tamaya button--border-thick"} %></li>
+                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--ujarak2 button--border-medium button--round-s button--text-thick button--size-s "} %></li>
                       <% else %>
-                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--wapasha button--round-s"} %></li>
+                        <li class = "search_button"><%= link_to tag.text, { :controller => :gallery, :action => :home, tag_name:tag.text,pagination_number_tag:@tag_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--ujarak button--border-medium button--round-s button--text-thin button--size-s "} %></li>
                       <% end %>
                     <% end %>
                 </div>
@@ -43,9 +43,9 @@
                 <div id = "scene_list">
                   <% @scenes.each do |scene| %>
                     <% if @selected_word == scene["sceneJP"] %>
-                      <li class="search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-primary"} %></li>
+                      <li class="search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--ujarak2 button--border-medium button--round-s button--text-thick button--size-s "} %></li>
                     <% else %>
-                      <li class = "search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "scene btn btn-info"} %></li>
+                      <li class = "search_button"><%= link_to scene["sceneJP"], { :controller => :gallery, :action => :home, scene_name:scene["sceneEN"],pagination_number_scene:@scene_page_number,lat:@current_lat,lon:@current_lon}, { :class => "button button--ujarak button--border-medium button--round-s button--text-thin button--size-s "} %></li>
                     <% end %>
                   <% end %>
                 </div>
