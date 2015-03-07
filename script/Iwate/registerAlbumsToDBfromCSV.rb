@@ -3,7 +3,7 @@ require "sqlite3"
 
 applicationID = 2 # => 岩手県アプリで利用することを意味する
 
-db_name = "../../db/development.sqlite3"
+db_name = "../../db/production.sqlite3"
 db = SQLite3::Database.new(db_name)
 
 post_id = db.execute("select * from albums").size + 1

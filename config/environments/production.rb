@@ -23,10 +23,12 @@ Rails.application.configure do
   #config.serve_static_assets = true
   config.assets.precompile += %w( gallery.css )
   config.assets.precompile += %w( map.css )
-  config.assets.precompile += %w( albums.css )
   config.assets.precompile += %w( top_pages.css )
-  config.assets.precompile += ['album/*.css']
+  config.assets.precompile += ['GridGallery/*.css']
+
   config.assets.precompile += ['*.js']
+  config.assets.precompile += ['GridGallery/*.js']
+
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
