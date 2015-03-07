@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205143330) do
+ActiveRecord::Schema.define(version: 20150307113746) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20150205143330) do
     t.integer  "album_id"
     t.string   "area"
     t.integer  "place_id"
+    t.string   "description"
+    t.string   "detail"
   end
 
   create_table "areas", force: true do |t|
