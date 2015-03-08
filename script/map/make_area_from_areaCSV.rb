@@ -9,7 +9,7 @@ db = SQLite3::Database.new(db_name)
    id = -1
   while line = file.gets
    id += 1
-   next if id == 0
+   #next if id == 0
    array = line.chop.split(",")
    area = array[0]
    ja   = array[1]

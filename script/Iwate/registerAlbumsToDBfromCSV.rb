@@ -8,14 +8,14 @@ db = SQLite3::Database.new(db_name)
 
 post_id = db.execute("select * from albums").size + 1
 
-open("AlbumDataCommonJaranWithShiDetail.csv") do |file|
+open("finalWithShi.csv") do |file|
   while l = file.gets
     array = l.chop.split(",")
-  title = array[0]
-    album_id = array[1]
+    title = array[0]
+    album_id = array[4]
     latitude = array[2]
     longitude = array[3]
-    address = array[4]
+    address = array[1]
     area = array[5]
     description = array[6]
     detail = array[7]

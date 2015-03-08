@@ -43,6 +43,11 @@ class MapController < ApplicationController
       album_with_distance["album_id"] = album.album_id
       album_with_distance["area"] = album.area
       album_with_distance["distance"] = distance.round(2)
+      puts "-----"
+      puts album.detail
+      puts "-----"
+      album_with_distance["detail"] = album.detail
+      album_with_distance["description"] = album.description
 
       @albums_with_distance << album_with_distance
     end

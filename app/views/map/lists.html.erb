@@ -10,7 +10,7 @@
         <section class="grid-wrap">
           <ul class="grid">
             <li class="grid-sizer"></li><!-- for Masonry column width -->
-<!--             
+<!--
             <li>
               <figure>
                 <img src="img/thumb/1.png" alt="img01"/>
@@ -23,7 +23,7 @@
                 <li>
                   <figure>
                     <%= image_tag album["representative_picture"] %>
-                    <figcaption><h3><%= link_to album["title"], controller: "albums", action: "show_pictures", album_id: album["album_id"], lat: @lat, lng: @lng %></h3><p>ここにdescriptionが入る</p><p class="distance">ここから <%= album["distance"]%> [km]</p>
+                    <figcaption><h3><%= link_to album["title"], controller: "albums", action: "show_pictures", album_id: album["album_id"], lat: @lat, lng: @lng %></h3><p><%= album["description"] %></p><p class="distance">ここから <%= album["distance"]%> [km]</p>
                     </figcaption>
                   </figure>
                 </li>
@@ -33,7 +33,7 @@
         </section><!-- // grid-wrap -->
         <section class="slideshow">
           <ul>
-<!-- 
+<!--
             <li>
               <figure>
                 <figcaption>
@@ -50,13 +50,13 @@
                 <figure>
                   <figcaption>
                     <h3><%= album["title"] %></h3>
-                    <p>詳細を記述すｋる</p>
+                    <p class = "detail_box"><%= album["detail"] %></p>
                   </figcaption>
                   <%= image_tag album["representative_picture"] %>
                 </figure>
               </li>
             <% end %>
-            
+
           </ul>
           <nav>
             <span class="icon nav-prev"></span>

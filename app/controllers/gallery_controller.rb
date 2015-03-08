@@ -8,6 +8,10 @@ class GalleryController < ApplicationController
     @current_lat = params[:lat] #現在位置の緯度
     @current_lon = params[:lon] #現在位置の経度
 
+    @current_lat = "39.680156" #現在位置の緯度
+    @current_lon = "141.133767" #現在位置の経度
+
+
     @selected_word = ""  #選択されたラベルがあれば、格納する。そのラベルの色を変化させ、押されていることを伝える
 
     @selected_tab  = 1 #選択されたタブ情報を格納する
@@ -63,6 +67,9 @@ class GalleryController < ApplicationController
     tags_include_not_jp = searchTableOr(Tag,"text",tagcounts)
 
     tags_include_not_jp.each do |t|
+      if t.text == "이와테"
+        next
+      end
       if t.text.ascii_only? == false
         @tags << t
       end

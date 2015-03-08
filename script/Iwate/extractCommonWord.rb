@@ -1,5 +1,5 @@
 jaran_spot_file = "IwateSpotsList_with_detail.csv"
-insta_spot_file = "AlbumDataCommonJaranWithShi.csv"
+insta_spot_file = "AlbumData.csv"
 
 jaran_list = {}
 insta_list = {}
