@@ -60,7 +60,13 @@ class GalleryController < ApplicationController
     #ハッシュタグリストを作成
     tagcounts = Tagcount.where('count > ?',10).order("count DESC").limit(tag_max_number)
 
-   @tags = searchTableOr(Tag,"text",tagcounts)
+    tags_include_not_jp = searchTableOr(Tag,"text",tagcounts)
+
+    tags_include_not_jp.each do |t|
+      if t.text.ascii_only? == false
+        @tags << t
+      end
+    end
 
     selected_tag_number = 0
 
