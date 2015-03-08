@@ -1,7 +1,9 @@
 class MapController < ApplicationController
   def index
     @areas = Area.all
+    @albums = Album.all
     gon.areas = @areas
+    gon.albums = @albums
     @hash = Gmaps4rails.build_markers(@areas) do |area, marker|
       marker.lat area.latitude
       marker.lng area.longitude
@@ -44,6 +46,10 @@ class MapController < ApplicationController
 
       @albums_with_distance << album_with_distance
     end
+  end
+
+  def getAlbum
+    params
   end
 
   def route

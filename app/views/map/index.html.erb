@@ -114,7 +114,7 @@
          // get_area_name(currentPos);
 
          //写真一覧のテーブルを表示
-         make_list();
+         make_area_list();
 
      }, function() {
          // gps 取得失敗
@@ -178,18 +178,7 @@
   });
  }
 
- // function make_list() {
- //  //console.log(areas);
- //  var innerHTML = "";
- //  for (var i = 0; i < areas.length; i++) {
- //   innerHTML += '<li class="span' + i+1 + '"><button type="button" class="btn btn-info" onclick="location.href='+"'/map/lists?area=" + areas[i]['ja'] + "&amp;lat=" + myLocation.lat + "&amp;lng=" + myLocation.lng + "'" + '">' + areas[i]['ja'] + '</button></li>';
- //  }
- //  console.log(innerHTML);
-
- //  document.getElementById('btns').innerHTML = innerHTML;
- // }
-
- function make_list() {
+ function make_area_list() {
   //console.log(areas);
   var innerHTML = '<div class="panel panel-default"> <div class="panel-heading">一覧表示</div> <div class="panel-body"> <ul class="list-group">';
    for (var i = 0; i < areas.length; i++) {

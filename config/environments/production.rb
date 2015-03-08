@@ -28,6 +28,7 @@ Rails.application.configure do
 
   config.assets.precompile += ['*.js']
   config.assets.precompile += ['GridGallery/*.js']
+  config.assets.precompile += ['accordion.css']
 
 
   # Compress JavaScripts and CSS.
