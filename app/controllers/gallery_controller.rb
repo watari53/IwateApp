@@ -68,10 +68,7 @@ class GalleryController < ApplicationController
     tags_include_not_jp = searchTableOr(Tag,"text",tagcounts)
 
     tags_include_not_jp.each do |t|
-      if t.text == "이와테"
-        next
-      end
-      if t.text.ascii_only? == false
+      if checkJP(t.text) == true
         @tags << t
       end
     end
@@ -83,10 +80,12 @@ class GalleryController < ApplicationController
 
     if params[:tag_name] == nil and params[:scene_name] == nil and params[:search] == nil
       @selected_tab = 0
+      near_albums = calcNearAlbumsFromCurrentPosition(@current_lat,@current_lon,near_threshold)
       if params[:album_title] != nil
         @selected_word = params[:album_title]
+      else
+        @selected_word = near_albums[0].title
       end
-      near_albums = calcNearAlbumsFromCurrentPosition(@current_lat,@current_lon,near_threshold)
       near_albums.each do |album|
         Picture.where(album_id:album.album_id).each do |picture|
         @pictures << picture
@@ -102,7 +101,7 @@ class GalleryController < ApplicationController
     elsif params[:scene_name] != nil
       @selected_tab = 2
       @selected_word = translateSceneToJP(params[:scene_name])
-      scenes = Scene.where('text == ?',params[:scene_name])
+      scenes = Scene.where('text == ?',params[:scene_name]).where('score > ?',0.8)
       scenes.each do |scene|
         @pictures << Picture.where(id:scene.picture_id).first
         picture_count = picture_count + 1
@@ -203,5 +202,14 @@ class GalleryController < ApplicationController
       puts r.text
     end
     return result
+  end
+
+  def checkJP(text)
+    japanese_regex = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
+    if japanese_regex =~ text
+      return true
+    else
+      return false
+    end
   end
 end
