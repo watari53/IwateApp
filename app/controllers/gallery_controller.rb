@@ -101,7 +101,7 @@ class GalleryController < ApplicationController
     elsif params[:scene_name] != nil
       @selected_tab = 2
       @selected_word = translateSceneToJP(params[:scene_name])
-      scenes = Scene.where('text == ?',params[:scene_name])
+      scenes = Scene.where('text == ?',params[:scene_name]).where('score > ?',0.8)
       scenes.each do |scene|
         @pictures << Picture.where(id:scene.picture_id).first
         picture_count = picture_count + 1
