@@ -67,7 +67,8 @@
      // gps取得開始
      navigator.geolocation.getCurrentPosition(function(pos) {
       //現在地をハッシュに代入
-      myLocation = {lat: 39.680156, lng: 141.133767};
+      // myLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+      myLocation = {lat: gon.lat, lng: gon.lng};
          // gps 取得成功
          // google map 初期化
          var mapCanvas = new google.maps.Map($('#map_canvas').get(0), {

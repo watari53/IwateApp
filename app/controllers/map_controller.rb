@@ -2,8 +2,12 @@ class MapController < ApplicationController
   def index
     @lat = params[:lat]
     @lng = params[:lon]
-    puts @lat
-    puts @lng
+
+    @lat = "39.680156" #現在位置の緯度
+    @lng = "141.133767" #現在位置の経度
+    gon.lat = @lat
+    gon.lng = @lng
+    
     @areas = Area.all
     @albums = Album.all
     gon.areas = @areas
