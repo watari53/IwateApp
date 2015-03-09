@@ -7,7 +7,6 @@ class GalleryController < ApplicationController
 
     @current_lat = params[:lat] #現在位置の緯度
     @current_lon = params[:lon] #現在位置の経度
-    puts @current_lat
 
     @current_lat = "39.680156" #現在位置の緯度
     @current_lon = "141.133767" #現在位置の経度
