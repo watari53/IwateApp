@@ -4,16 +4,11 @@
   <br/> <br/>
 
   <div class="row">
-
     <div class="col-xs-6 button_wrapper location">
-      <%= link_to image_tag("/images/top_pages/ic_location_on_white_18dp.png", 
-        :alt => "地図アイコン "), {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"} %>
-      <p class="link"><%= link_to "地図から探す", {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"}, { :class => "button", :role => "button" } %></p><br/>
+      <p class="svg"><a class="icon-location2" href="/map/index?lat=LAT&amp;lon=LON"><br><span class="svg_font">地図から探す</span></a></p>
     </div>
     <div class="col-xs-6 button_wrapper location">
-      <%= link_to image_tag("/images/top_pages/ic_local_see_white_18dp.png", 
-      :alt => "写真アイコン "),{:controller => :gallery, :action => :home,:lat => "LAT",:lon => "LON"}%>
-      <p class="link"><%= link_to "写真から探す", {:controller => :gallery, :action => :home,:lat => "LAT",:lon => "LON"}, { :class => "button", :role => "button" } %></p>
+      <p class="svg"><a class="icon-camera" href="/gallery/home?lat=LAT&amp;lon=LON"><br><span class="svg_font">写真から探す</span></a></p>
     </div>
   </div>
 </div>
@@ -50,10 +45,10 @@
     "/images/top_pages/bg_04.jpg"
   ];
   $(images).each(function(){
-    $('<img/>')[0].src = this; 
+    $('<img/>')[0].src = this;
   });
   var index = 0;
-  $.backstretch(images[index], {speed: 1000});        
+  $.backstretch(images[index], {speed: 1000});
   setInterval(function() {
     index = (index >= images.length - 1) ? 0 : index + 1;
     $.backstretch(images[index]);
