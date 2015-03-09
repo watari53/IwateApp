@@ -21,7 +21,7 @@
                 document.getElementById("location").innerHTML = location;
         });
     } else {
-        window.alert("本ブラウザではGeolocationが使えません");
+      window.alert("本ブラウザでは位置情報を取得できません");
     }
 </script>
 
@@ -53,8 +53,8 @@
 
     <div class="col-xs-6 button_wrapper">
       <%= link_to image_tag("/images/top_pages/ic_location_on_white_18dp.png", 
-        :alt => "地図アイコン "), {:controller => :map, :action => :index} %>
-      <p style="align: center;"><%= link_to "地図から探す", {:controller => :map, :action => :index}, { :class => "button", :role => "button" } %></p><br/>
+        :alt => "地図アイコン "), {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"} %>
+      <p style="align: center;"><%= link_to "地図から探す", {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"}, { :class => "button", :role => "button" } %></p><br/>
     </div>
     <div class="col-xs-6 button_wrapper">
       <%= link_to image_tag("/images/top_pages/ic_local_see_white_18dp.png", 
