@@ -67,10 +67,7 @@ class GalleryController < ApplicationController
     tags_include_not_jp = searchTableOr(Tag,"text",tagcounts)
 
     tags_include_not_jp.each do |t|
-      if t.text == "이와테"
-        next
-      end
-      if t.text.ascii_only? == false
+      if checkJP(t.text) == true
         @tags << t
       end
     end
@@ -202,5 +199,14 @@ class GalleryController < ApplicationController
       puts r.text
     end
     return result
+  end
+
+  def checkJP(text)
+    japanese_regex = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
+    if japanese_regex =~ text
+      return true
+    else
+      return false
+    end
   end
 end
