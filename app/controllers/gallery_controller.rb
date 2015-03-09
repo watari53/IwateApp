@@ -79,10 +79,12 @@ class GalleryController < ApplicationController
 
     if params[:tag_name] == nil and params[:scene_name] == nil and params[:search] == nil
       @selected_tab = 0
+      near_albums = calcNearAlbumsFromCurrentPosition(@current_lat,@current_lon,near_threshold)
       if params[:album_title] != nil
         @selected_word = params[:album_title]
+      else
+        @selected_word = near_albums[0].title
       end
-      near_albums = calcNearAlbumsFromCurrentPosition(@current_lat,@current_lon,near_threshold)
       near_albums.each do |album|
         Picture.where(album_id:album.album_id).each do |picture|
         @pictures << picture
