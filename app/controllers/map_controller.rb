@@ -1,5 +1,9 @@
 class MapController < ApplicationController
   def index
+    @lat = params[:lat]
+    @lng = params[:lon]
+    puts @lat
+    puts @lng
     @areas = Area.all
     @albums = Album.all
     gon.areas = @areas

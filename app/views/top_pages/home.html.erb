@@ -1,3 +1,24 @@
+<div class='container-fluid'>
+  <br/>
+  <h1 style="font-size: 44px;">ようこそ岩手へ</h1>
+  <br/> <br/>
+
+  <div class="row">
+
+    <div class="col-xs-6 button_wrapper location">
+      <%= link_to image_tag("/images/top_pages/ic_location_on_white_18dp.png", 
+        :alt => "地図アイコン "), {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"} %>
+      <p class="link"><%= link_to "地図から探す", {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"}, { :class => "button", :role => "button" } %></p><br/>
+    </div>
+    <div class="col-xs-6 button_wrapper location">
+      <%= link_to image_tag("/images/top_pages/ic_local_see_white_18dp.png", 
+      :alt => "写真アイコン "),{:controller => :gallery, :action => :home,:lat => "LAT",:lon => "LON"}%>
+      <p class="link"><%= link_to "写真から探す", {:controller => :gallery, :action => :home,:lat => "LAT",:lon => "LON"}, { :class => "button", :role => "button" } %></p>
+    </div>
+  </div>
+</div>
+
+
 <%= javascript_include_tag 'jquery-backstretch.min' %>
 <script type="text/javascript">
     if (navigator.geolocation) {
@@ -5,16 +26,11 @@
         navigator.geolocation.getCurrentPosition(
         // 位置情報取得成功時
         function (pos) {
-                //var location ="<li>"+"緯度：" + pos.coords.latitude + "</li>";
-                //location += "<li>"+"経度：" + pos.coords.longitude + "</li>";
-                //document.getElementById("location").innerHTML = location;
-
-        $('.link a').each(function(){
-          var replace = null;
-          var replace = $(this).attr('href').replace(/LAT/g,pos.coords.latitude).replace(/LON/g,pos.coords.longitude);
-          $(this).attr('href',replace);
-          });
-        },
+          $('.location a').each(function(){
+            var replace = null;
+            var replace = $(this).attr('href').replace(/LAT/g,pos.coords.latitude).replace(/LON/g,pos.coords.longitude);
+            $(this).attr('href',replace);
+            });        },
         // 位置情報取得失敗時
         function (pos) {
                 var location ="<li>位置情報が取得できませんでした。</li>";
@@ -44,22 +60,3 @@
   }, 3000);
 </script>
 
-<div class='container-fluid'>
-  <br/>
-  <h1>ようこそ岩手へ</h1>
-  <br/> <br/>
-
-  <div class="row">
-
-    <div class="col-xs-6 button_wrapper">
-      <%= link_to image_tag("/images/top_pages/ic_location_on_white_18dp.png", 
-        :alt => "地図アイコン "), {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"} %>
-      <p style="align: center;"><%= link_to "地図から探す", {:controller => :map, :action => :index, :lat => "LAT", :lon => "LON"}, { :class => "button", :role => "button" } %></p><br/>
-    </div>
-    <div class="col-xs-6 button_wrapper">
-      <%= link_to image_tag("/images/top_pages/ic_local_see_white_18dp.png", 
-      :alt => "写真アイコン "),{:controller => :gallery, :action => :home,:lat => "LAT",:lon => "LON"}%>
-      <p class="link"><%= link_to "写真から探す", {:controller => :gallery, :action => :home,:lat => "LAT",:lon => "LON"}, { :class => "button", :role => "button" } %></p>
-    </div>
-  </div>
-</div>
