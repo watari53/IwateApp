@@ -4,6 +4,21 @@
 <div class="container-fluid" id="main">
   <div class="row">
     <div class="col-xs-5" id="left">
+      <div class="panel panel-default"> <div class="panel-heading">一覧表示</div> </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <% @areas.each_with_index do |area, index| %>
+            <li class="list-group-item">
+              <a href="#" onClick="list_click(<%= index %>)">
+              <img src="/images/characters/<%=area.area%>.jpg", alt=<%=area.ja%>></a><a href="#" onClick="list_click(<%= index %>)"><%= area.ja %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--     リストの基本構造 -->
  <!--      <h2>Bootstrap Google Maps Demo</h2> -->
@@ -18,9 +33,6 @@
         Aliquam in felis sit amet augue.</p>
 
       <hr> -->
-
-  </div>
-</div>
 
 <script type="text/javascript">
 /*----------------- Global Value -------------------*/
@@ -114,9 +126,6 @@
          //現在地の逆ジオコーディング(座標から住所)(function)
          // get_area_name(currentPos);
 
-         //写真一覧のテーブルを表示
-         make_area_list();
-
      }, function() {
          // gps 取得失敗
          $('#mapCanvas').text('GPSデータを取得できませんでした');
@@ -177,20 +186,6 @@
     infowindow.open(map,marker);
     currentInfoWindow = infowindow;
   });
- }
-
- function make_area_list() {
-  //console.log(areas);
-  var innerHTML = '<div class="panel panel-default"> <div class="panel-heading">一覧表示</div> <div class="panel-body"> <ul class="list-group">';
-   for (var i = 0; i < areas.length; i++) {
-        // innerHTML += '<div class="panel panel-default"> <div class="panel-heading"> <a href="#" onClick="list_click('+ i + ')">' + areas[i].ja + '</a> </div> </div> <div class="panel-body"> <img src="/images/characters/' + areas[i].area + '.jpg", height="60" width="60" alt="'+ areas[i].ja + '>"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Aliquam in felis sit amet augue.</p> </div> <hr>';
-        innerHTML += '<li class="list-group-item"><a href="#" onClick="list_click('+ i + ')">' + '<img src="/images/characters/' + areas[i].area + '.jpg", alt="'+ areas[i].ja + '></a><a href="#" onClick="list_click('+ i + ')">' + areas[i].ja + '</a></li>';
-   }
-
-  innerHTML += '</ul> </div> </div>';
-
-
-  document.getElementById('left').innerHTML = innerHTML;
  }
 
  function list_click(i) {
