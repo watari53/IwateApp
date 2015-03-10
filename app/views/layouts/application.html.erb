@@ -63,10 +63,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></li>
-            <li><%= link_to "地図から探す", {:controller => :map, :action => :index} %></li>
-            <li><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></li>
-            <li><%= link_to "写真から探す", {:controller => :gallery, :action => :home, :lat => "LAT", :lon => "LON"} %></li>
+            <li><a class="icon-location2" href="/map/index?lat=LAT&amp;lon=LON"><span> 地図から探す</span></a></li>
+            <li><a class="icon-camera" href="/gallery/home?lat=LAT&amp;lon=LON"><span> 写真から探す</span></a></li>
           </ul>
 
           <div class="navbar-form pull-right" role="search">
