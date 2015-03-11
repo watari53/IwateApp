@@ -1,4 +1,4 @@
-section h4,
+section h1,
 dt {
     background-color: #9CF;
     border-bottom: solid 1px #59ACFF;
@@ -9,7 +9,7 @@ dt {
     position: relative;
 }
  
-section h4:before,
+section h1:before,
 dt:before {
   display: block;
   content: "";
@@ -24,7 +24,7 @@ dt:before {
   background: #FFF;
 }
  
-section h4:after,
+section h1:after,
 dt:after {
   display: block;
   content: "";
@@ -39,12 +39,12 @@ dt:after {
   background: #9CF;
 }
  
-section h4.active:before,
+section h1.active:before,
 dt.active:before {
   margin-top: -2px;
 }
  
-section h4.active:after,
+section h1.active:after,
 dt.active:after {
   margin-top: 3px;
 }

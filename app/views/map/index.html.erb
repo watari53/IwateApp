@@ -1,21 +1,33 @@
+<% stylesheet_link_tag 'accordion/style' %>
 <!-- <div id="area_name"></div> -->
 <div id="map_canvas"></div>
 
 <div class="container-fluid" id="main">
   <div class="row">
     <div class="col-xs-5" id="left">
+
       <div class="panel panel-default"> <div class="panel-heading">一覧表示</div> </div>
-      <div class="panel-body">
-        <ul class="list-group">
+      <div class="panel-body accordion">
+
+        <ul class="list-group accordion_ul">
           <% @areas.each_with_index do |area, index| %>
             <li class="list-group-item">
-              <a href="#" onClick="list_click(<%= index %>)">
-              <img src="/images/characters/<%=area.area%>.jpg", alt=<%=area.ja%>></a><a href="#" onClick="list_click(<%= index %>)"><%= area.ja %>
-              </a>
+              <section>
+                <a href="#" onClick="list_click(<%= index %>)">
+                <img src="/images/characters/<%=area.area%>.jpg", alt=<%=area.ja%>></a><a href="#" onClick="list_click(<%= index %>)"><%= area.ja %>
+                </a><a class="toggle" href="#" ><img style="width:20px; height:20px; align:right" src="/images/accordion/arrow_down.png"></a>
+                <ul>
+                <% @albums.where(area: "#{area.ja}").each do |album| %>
+                  <li><a href="#"><%= album.title %></a></li>
+                <% end %>
+                </ul>
+              </section>
             </li>
           <% end %>
         </ul>
+
       </div>
+
     </div>
   </div>
 </div>
@@ -33,6 +45,13 @@
         Aliquam in felis sit amet augue.</p>
 
       <hr> -->
+<script>
+  $('.accordion_ul ul').hide();
+    $('.accordion_ul .toggle').click(function(e){
+    $(this).toggleClass("active");
+    $(this).next("ul").slideToggle();
+});
+</script>
 
 <script type="text/javascript">
 /*----------------- Global Value -------------------*/
@@ -68,6 +87,7 @@
 
 /*----------------- initialize -------------------*/
  jQuery(function($) {
+
      // gps に対応しているかチェック
      if (! navigator.geolocation) {
          $('#map_canvas').text('GPSに対応したブラウザでお試しください');
