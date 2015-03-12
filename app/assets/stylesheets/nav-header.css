@@ -118,3 +118,9 @@ html,body{
  content: "\e602";
 }
 
+.pagetop {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  font-size:40pt;
+}

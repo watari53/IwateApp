@@ -17,13 +17,6 @@ p.detail_box {
   padding: 20px;
 }
 
-.pagetop {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-  font-size:40pt;
-}
-
 .og-grid {
  list-style: none;
  padding: 20px 0;
