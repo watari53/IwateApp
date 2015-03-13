@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     translate_hash["Ocean"] = "海"
     translate_hash["Park"] = "公園"
     translate_hash["Sunset"] = "夕日"
-    translate_hash["Desert"] = "荒れ地"
+    translate_hash["Desert"] = "荒野"
     translate_hash["Mountain"] = "山地"
 
     text_jp = ""
@@ -32,8 +32,49 @@ class ApplicationController < ActionController::Base
         text_jp = ""
       end
     end
-    puts text_en
-    puts text_jp
+    if text_jp == ""
+      puts text_en
+    end
     return text_jp
+  end
+
+  #calcurate 2 points distance
+  #return distance[m]
+  def calcDistance(lat1,lon1,lat2,lon2)
+    a_lat = lat1.to_f * Math::PI / 180
+    a_lon = lon1.to_f * Math::PI / 180
+    b_lat = lat2.to_f * Math::PI / 180
+    b_lon = lon2.to_f * Math::PI / 180
+
+    latave = (a_lat + b_lat) / 2
+    latidiff = a_lat - b_lat
+    longdiff = a_lon - b_lon
+
+    meridian = 6335439 / Math.sqrt((1 - 0.006694 * Math.sin(latave) * Math.sin(latave)) ** 3)
+
+    primevertical = 6378137 / Math.sqrt(1 - 0.006694 * Math.sin(latave) * Math.sin(latave))
+
+    x = meridian * latidiff
+    y = primevertical * Math.cos(latave) * longdiff
+
+    return Math.sqrt(x ** 2 + y ** 2)
+  end
+
+  #creating picture hash map
+  def createHashPicture(activerecord_picture,current_lat,current_lon)
+    hash_picture = {}
+    hash_picture["url"] = activerecord_picture.url
+    hash_picture["latitude"] = activerecord_picture.latitude
+    hash_picture["longitude"] = activerecord_picture.longitude
+    hash_picture["title"] = activerecord_picture.title
+    hash_picture["description"] = activerecord_picture.description
+    hash_picture["address"] = activerecord_picture.address
+    hash_picture["date"] = activerecord_picture.date
+    hash_picture["distance"] = "No data"
+    if current_lat != nil or current_lat != "" or current_LAT == "LAT"
+      hash_picture["distance"] = calcDistance(current_lat,current_lon,activerecord_picture.latitude,activerecord_picture.longitude)/1000
+      hash_picture["distance"] = hash_picture["distance"].round(2)
+    end
+    return hash_picture
   end
 end

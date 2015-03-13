@@ -1,6 +1,6 @@
 <ul id="og-grid" class="og-grid">
     <% @pictures.each do |photo|%>
-      <li><a href="/map/route?lat=<%= @mylat %>&amp;lng=<%= @mylng %>&amp;dstlat=<%= photo.latitude %>&amp;dstlng=<%= photo.longitude %>" data-largesrc=<%= photo.url %> data-title="<%= photo.title %>" data-description="<%= photo.description %><br> 撮影場所：<%= photo.address %><br> 撮影日時：<%= photo.date.split("+")[0] %>"><img src=<%= photo.url %> alt="img"/></a></li>
+      <li><a href="/map/route?lat=<%= @mylat %>&amp;lng=<%= @mylng %>&amp;dstlat=<%= photo["latitude"] %>&amp;dstlng=<%= photo["longitude"] %>" data-largesrc=<%= photo["url"] %> data-title="<%= photo["title"] %>" data-description="<%= photo["description"] %><br> 撮影場所：<%= photo["address"] %><br> 撮影日時：<%= photo["date"].split("+")[0] %><br>ここまで<%= photo["distance"] %>[km]"><img src=<%= photo["url"] %> alt="img"/></a></li>
     <% end %>
 </ul>
 

@@ -87,7 +87,7 @@ class GalleryController < ApplicationController
       end
       near_albums.each do |album|
         Picture.where(album_id:album.album_id).each do |picture|
-        @pictures << picture
+        @pictures << createHashPicture(picture,@current_lat,@current_lon)
         picture_count = picture_count + 1
         if picture_count == picture_max_count
           break
@@ -96,13 +96,15 @@ class GalleryController < ApplicationController
       end
     elsif params[:search] != nil
       @searched_keyword = params[:search][:keyword]
-      @pictures = Picture.where("title LIKE ?", "%#{escape_like(params[:search][:keyword])}%").limit(picture_max_count)
+      Picture.where("title LIKE ?", "%#{escape_like(params[:search][:keyword])}%").limit(picture_max_count).each do |picture|
+      @pictures << createHashPicture(picture,@current_lat,@current_lon)
+      end
     elsif params[:scene_name] != nil
       @selected_tab = 2
       @selected_word = translateSceneToJP(params[:scene_name])
       scenes = Scene.where('text == ?',params[:scene_name]).where('score > ?',0.8)
       scenes.each do |scene|
-        @pictures << Picture.where(id:scene.picture_id).first
+        @pictures << createHashPicture(Picture.where(id:scene.picture_id).first,@current_lat,@current_lon)
         picture_count = picture_count + 1
         if picture_count == picture_max_count
           break
@@ -113,7 +115,7 @@ class GalleryController < ApplicationController
       @selected_word = params[:tag_name]
       tags = Tag.where('text == ?',params[:tag_name])
       tags.each do |tag|
-        @pictures << Picture.where(id:tag.picture_id).first
+        @pictures << createHashPicture(Picture.where(id:tag.picture_id).first,@current_lat,@current_lon)
         picture_count = picture_count + 1
         if picture_count == picture_max_count
           break
@@ -156,28 +158,6 @@ class GalleryController < ApplicationController
     return near_albums
   end
 
-  #calcurate 2 points distance
-  #return distance[m]
-  def calcDistance(lat1,lon1,lat2,lon2)
-    a_lat = lat1.to_f * Math::PI / 180
-    a_lon = lon1.to_f * Math::PI / 180
-    b_lat = lat2.to_f * Math::PI / 180
-    b_lon = lon2.to_f * Math::PI / 180
-
-    latave = (a_lat + b_lat) / 2
-    latidiff = a_lat - b_lat
-    longdiff = a_lon - b_lon
-
-    meridian = 6335439 / Math.sqrt((1 - 0.006694 * Math.sin(latave) * Math.sin(latave)) ** 3)
-
-    primevertical = 6378137 / Math.sqrt(1 - 0.006694 * Math.sin(latave) * Math.sin(latave))
-
-    x = meridian * latidiff
-    y = primevertical * Math.cos(latave) * longdiff
-
-    return Math.sqrt(x ** 2 + y ** 2)
-  end
-
   def escape_like(string)
     return string.gsub(/[\\%_]/){|m| "\\#{m}"}
   end
@@ -198,7 +178,7 @@ class GalleryController < ApplicationController
 
     result = table.where(sql).select(keyword).uniq!
     result.each do |r|
-      puts r.text
+      #puts r.text
     end
     return result
   end

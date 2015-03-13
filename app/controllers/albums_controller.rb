@@ -63,7 +63,11 @@ class AlbumsController < ApplicationController
 
   def show_pictures
     @album_id = params[:album_id]
-    @pictures = Picture.where(album_id: @album_id)
+    @pictures = []
+    Picture.where(album_id: @album_id).each do |picture|
+      @pictures << createHashPicture(picture,params[:lat],params[:lng])
+    end
+
     @mylat = params[:lat]
     @mylng = params[:lng]
   end
