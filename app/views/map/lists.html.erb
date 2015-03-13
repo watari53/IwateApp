@@ -50,7 +50,7 @@
                 <figure>
                   <figcaption>
                     <h3><%= link_to album["title"], controller: "albums", action: "show_pictures", album_id: album["album_id"], lat: @lat, lng: @lng %></h3>
-                    <p class = "detail_box"><%= album["detail"] %></p>
+                    <!--<p class = "detail_box"><%= album["detail"] %></p>-->
                   </figcaption>
                   <%= image_tag album["representative_picture"] %>
                 </figure>
