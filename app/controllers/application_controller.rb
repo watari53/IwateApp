@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
     translate_hash["Urban"] = "都会"
     translate_hash["Beach"] = "海辺"
     translate_hash["Water"] = "水"
-    translate_hash["Restaurant"] = "nレストラン"
+    translate_hash["Restaurant"] = "レストラン"
     translate_hash["Night Life"] = "夜景"
-    translate_hash["Food"] = "n食事"
+    translate_hash["Food"] = "食事"
     translate_hash["Indoor"] = "屋内"
     translate_hash["Suburban"] = "郊外"
     translate_hash["Snow"] = "雪"
@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
     translate_hash["Sunset"] = "夕日"
     translate_hash["Desert"] = "荒野"
     translate_hash["Mountain"] = "山地"
+    translate_hash["Forest"] = "森林"
+    translate_hash["Flower"] = "お花"
 
     text_jp = ""
 

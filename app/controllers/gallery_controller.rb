@@ -79,25 +79,27 @@ class GalleryController < ApplicationController
 
     if params[:tag_name] == nil and params[:scene_name] == nil and params[:search] == nil
       @selected_tab = 0
-      near_albums = calcNearAlbumsFromCurrentPosition(@current_lat,@current_lon,near_threshold)
       if params[:album_title] != nil
         @selected_word = params[:album_title]
-      else
-        @selected_word = near_albums[0].title
-      end
-      near_albums.each do |album|
-        Picture.where(album_id:album.album_id).each do |picture|
-        @pictures << createHashPicture(picture,@current_lat,@current_lon)
-        picture_count = picture_count + 1
-        if picture_count == picture_max_count
-          break
+        Picture.where("title == ?", params[:album_title]).limit(picture_max_count).each do |picture|
+          @pictures << createHashPicture(picture,@current_lat,@current_lon)
         end
+      else
+        near_albums = calcNearAlbumsFromCurrentPosition(@current_lat,@current_lon,near_threshold)
+        near_albums.each do |album|
+          Picture.where(album_id:album.album_id).each do |picture|
+            @pictures << createHashPicture(picture,@current_lat,@current_lon)
+            picture_count = picture_count + 1
+            if picture_count == picture_max_count
+              break
+            end
+          end
         end
       end
     elsif params[:search] != nil
       @searched_keyword = params[:search][:keyword]
       Picture.where("title LIKE ?", "%#{escape_like(params[:search][:keyword])}%").limit(picture_max_count).each do |picture|
-      @pictures << createHashPicture(picture,@current_lat,@current_lon)
+        @pictures << createHashPicture(picture,@current_lat,@current_lon)
       end
     elsif params[:scene_name] != nil
       @selected_tab = 2
