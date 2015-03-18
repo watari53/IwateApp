@@ -3,8 +3,6 @@ require "csv"
 
 number = 0
 
-puts GogoMaps.get_latlng('長野県上高井郡高山村')
-
 open("IwatekenSpotsListShaped.csv") do |file|
   while l = file.gets
     array = l.chop.split(",")
