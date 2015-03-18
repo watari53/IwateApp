@@ -73,11 +73,11 @@ venues_id_name = []
 
 jaranSpots = []
 
-open("IwateSpotsListWithLatLon.csv") do |file|
+open("IwateSpotsListWithLatLon.dat") do |file|
   while l = file.gets
     array = l.chop.split(",")
-    lat = array[3]
-    lon = array[4]
+    lat = array[4]
+    lon = array[5]
     spot = array[0]
     if lat == "no"
       next
@@ -92,9 +92,13 @@ end
 open("IwateSpotsListWithLatLon.csv") do |file|
   while l = file.gets
     array = l.chop.split(",")
-    lat = array[3]
-    lon = array[4]
+    lat = array[4]
+    lon = array[5]
     spot = array[0]
+    post = array[1]
+    address = array[2]
+    detail = array[3]
+    description = detail.split("。")[0]
 
     if lat == "no"
       next

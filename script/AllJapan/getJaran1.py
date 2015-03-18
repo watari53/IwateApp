@@ -37,13 +37,16 @@ def getSpotDetailPage(detail_url):
   print spot_address
   print description_und_detail
 
-  csvFile = open('IwateSpotsList_with_detail.csv', 'ab') #ファイルが無ければ作る、の'a'を指定します
-  csvWriter = csv.writer(csvFile)
-  csvData = []
-  csvData.append(spot_title)
-  csvData.append(spot_address)
-  csvData.append(description_und_detail)
-  csvWriter.writerow(csvData)
+  csvFile = open('IwateSpotsList_with_detail.dat', 'ab') #ファイルが無ければ作る、の'a'を指定します
+
+  csvFile.write(spot_title + "+" + spot_address + "+" + description_und_detail + '\n')
+
+  #csvWriter = csv.writer(csvFile)
+  #csvData = []
+  #csvData.append(spot_title)
+  #csvData.append(spot_address)
+  #csvData.append(description_und_detail)
+  #csvWriter.writerow(csvData)
   csvFile.close()
 
 if __name__ == '__main__':
