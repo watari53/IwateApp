@@ -25,161 +25,195 @@
 </div>
 
 <script type="text/javascript">
-/*----------------- Global Value -------------------*/
- var myLocationMarker = new google.maps.MarkerImage(
-  'http://waox.main.jp/png/source-bluedot.png',
-  null, // Sizee
-  null, // origin
-  new google.maps.Point( 8, 8 ), // anchor (move to center of marker)
-  new google.maps.Size( 17, 17 ) // scaled size (required for Retina display icon)
- );
+// /*----------------- Global Value -------------------*/
+//  var myLocationMarker = new google.maps.MarkerImage(
+//   'http://waox.main.jp/png/source-bluedot.png',
+//   null, // Sizee
+//   null, // origin
+//   new google.maps.Point( 8, 8 ), // anchor (move to center of marker)
+//   new google.maps.Size( 17, 17 ) // scaled size (required for Retina display icon)
+//  );
 
- var destinationMarker = new google.maps.MarkerImage(
-  'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
-  null, // size
-  null, // origin
-  new google.maps.Point( 8, 8 ), // anchor (move to center of marker)
-  new google.maps.Size( 25, 25 ) // scaled size (required for Retina display icon)
- );
+//  var destinationMarker = new google.maps.MarkerImage(
+//   'http://maps.google.co.jp/mapfiles/ms/icons/red-pushpin.png',
+//   null, // size
+//   null, // origin
+//   new google.maps.Point( 8, 8 ), // anchor (move to center of marker)
+//   new google.maps.Size( 25, 25 ) // scaled size (required for Retina display icon)
+//  );
 
- var myLocation; //緯度経度をhashで格納
- //google mapオブジェクト
- var mapCanvas = new google.maps.Map(document.getElementById("map_canvas"));
+//  var myLocation; //緯度経度をhashで格納
+//  //google mapオブジェクト
+//  var mapCanvas = new google.maps.Map(document.getElementById("map_canvas"));
 
- var infowindow = new google.maps.InfoWindow({
-     size: new google.maps.Size(50,50)
-   });
- var currentInfoWindow = null; //最後に開いた情報ウィンドウを記憶
+//  var infowindow = new google.maps.InfoWindow({
+//      size: new google.maps.Size(50,50)
+//    });
+//  var currentInfoWindow = null; //最後に開いた情報ウィンドウを記憶
 
- var areas = gon.areas;
- var gmarkers = [];
+//  var areas = gon.areas;
+//  var gmarkers = [];
 
-/*----------------- End of Global Value -------------------*/
+    //handler = Gmaps.build('Google');
+    var base_url = "http://gmaps-utility-library.googlecode.com/svn/trunk/markerclusterer/1.0/images/";
+    handler = Gmaps.build('Google',
+        {markers:
+          {clusterer: {
+            gridSize: 40,
+            maxZoom: 10,
+            styles: [ {
+              textSize: 10,
+              textColor: '#ff0000',
+              url: base_url + 'heart30.png',
+              height: 26,
+              width: 30 }
+            , {
+              textSize: 14, 
+              textColor: '#ffff00',
+              url: base_url + 'heart40.png',
+              height: 35,
+              width: 40 }
+            , {
+             textSize: 18, 
+             textColor: '#0000ff',
+             url: base_url + 'heart50.png',
+             height: 44
+             width: 50,
+             }
+            ]}}}
+      );
+    handler.buildMap({provider: {}, internal: {id: 'map_canvas'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    }); 
 
-/*----------------- initialize -------------------*/
- jQuery(function($) {
+// /*----------------- End of Global Value -------------------*/
 
-     // gps に対応しているかチェック
-     if (! navigator.geolocation) {
-         $('#map_canvas').text('GPSに対応したブラウザでお試しください');
-         return false;
-     }
+// /*----------------- initialize -------------------*/
+//  jQuery(function($) {
 
-     $('#map_canvas').text('GPSデータを取得します...');
+//      // gps に対応しているかチェック
+//      if (! navigator.geolocation) {
+//          $('#map_canvas').text('GPSに対応したブラウザでお試しください');
+//          return false;
+//      }
 
-     // gps取得開始
-     navigator.geolocation.getCurrentPosition(function(pos) {
-      //現在地をハッシュに代入
-      // myLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
-      myLocation = {lat: gon.lat, lng: gon.lng};
-         // gps 取得成功
-         // google map 初期化
-         var mapCanvas = new google.maps.Map($('#map_canvas').get(0), {
-             center: new google.maps.LatLng(39.618033, 141.496033),  //桜木町駅を中心に
-             mapTypeId: google.maps.MapTypeId.ROADMAP,
-             zoom: 9
-         });
-         //地図のある地点がクリックされたら、開かれている情報ウィンドウを閉じる
-         google.maps.event.addListener(mapCanvas, "click", function() {infowindow.close();});
+//      $('#map_canvas').text('GPSデータを取得します...');
 
-         // 現在位置にピンをたてる
-         var currentPos = new google.maps.LatLng(myLocation.lat, myLocation.lng);
-         var currentMarker = new google.maps.Marker({
-              flat: true,//・・・・・・アイコンにtrueで影を付けない
-              icon: myLocationMarker,
-              map: mapCanvas,
-              optimized: false,
-              title: '現在地',
-              visible: true,
-              position: currentPos
-         });
+//      // gps取得開始
+//      navigator.geolocation.getCurrentPosition(function(pos) {
+//       //現在地をハッシュに代入
+//       // myLocation = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+//       myLocation = {lat: gon.lat, lng: gon.lng};
+//          // gps 取得成功
+//          // google map 初期化
+//          var mapCanvas = new google.maps.Map($('#map_canvas').get(0), {
+//              center: new google.maps.LatLng(39.618033, 141.496033),  //桜木町駅を中心に
+//              mapTypeId: google.maps.MapTypeId.ROADMAP,
+//              zoom: 9
+//          });
+//          //地図のある地点がクリックされたら、開かれている情報ウィンドウを閉じる
+//          google.maps.event.addListener(mapCanvas, "click", function() {infowindow.close();});
 
-         currentMarker.setMap(mapCanvas);
+//          // 現在位置にピンをたてる
+//          var currentPos = new google.maps.LatLng(myLocation.lat, myLocation.lng);
+//          var currentMarker = new google.maps.Marker({
+//               flat: true,//・・・・・・アイコンにtrueで影を付けない
+//               icon: myLocationMarker,
+//               map: mapCanvas,
+//               optimized: false,
+//               title: '現在地',
+//               visible: true,
+//               position: currentPos
+//          });
 
-         // 誤差を円で描く
-         new google.maps.Circle({
-             map: mapCanvas,
-             center: currentPos,
-             radius: pos.coords.accuracy, // 単位はメートル
-             strokeColor: '#0088ff',
-             strokeOpacity: 0.8,
-             strokeWeight: 1,
-             fillColor: '#0088ff',
-             fillOpacity: 0.2
-         });
+//          currentMarker.setMap(mapCanvas);
 
-         // 現在地にスクロールさせる
-         //mapCanvas.panTo(currentPos);
+//          // 誤差を円で描く
+//          new google.maps.Circle({
+//              map: mapCanvas,
+//              center: currentPos,
+//              radius: pos.coords.accuracy, // 単位はメートル
+//              strokeColor: '#0088ff',
+//              strokeOpacity: 0.8,
+//              strokeWeight: 1,
+//              fillColor: '#0088ff',
+//              fillOpacity: 0.2
+//          });
 
-         //DBに登録されているスポットをマップ上にマーカー表示(function)
-         make_marker(mapCanvas);
+//          // 現在地にスクロールさせる
+//          //mapCanvas.panTo(currentPos);
 
-         //現在地の逆ジオコーディング(座標から住所)(function)
-         // get_area_name(currentPos);
+//          //DBに登録されているスポットをマップ上にマーカー表示(function)
+//          make_marker(mapCanvas);
 
-     }, function() {
-         // gps 取得失敗
-         $('#mapCanvas').text('GPSデータを取得できませんでした');
-         return false;
-     });
+//          //現在地の逆ジオコーディング(座標から住所)(function)
+//          // get_area_name(currentPos);
 
- });
+//      }, function() {
+//          // gps 取得失敗
+//          $('#mapCanvas').text('GPSデータを取得できませんでした');
+//          return false;
+//      });
 
-/*----------------- Function -------------------*/
+//  });
 
- function get_area_name(latLng_now){
-  // 座標から住所名を取得
-  var geocoder = new google.maps.Geocoder();
-  geocoder.geocode({latLng: latLng_now}, function(results, status){
-   if(status == google.maps.GeocoderStatus.OK){
-   document.getElementById("area_name").innerHTML = results[0].formatted_address+'付近にいます';
-   }
-   else {
-   // エラーの場合
-   }
-  });
- }
+// /*----------------- Function -------------------*/
 
- function make_marker(map) {
-  for (var i = 0; i < areas.length; i++) {
-   //マーカーを作成
-   var marker = new google.maps.Marker({
-       position : new google.maps.LatLng(areas[i].latitude, areas[i].longitude),
-       icon: destinationMarker,
-       map: map,
-      });
-   var j = i + 1;
-   marker.setTitle(j.toString());
-   gmarkers[i] = marker;
-   attachSecretMessage(marker, i, map, areas[i]);
-  }
- }
+//  function get_area_name(latLng_now){
+//   // 座標から住所名を取得
+//   var geocoder = new google.maps.Geocoder();
+//   geocoder.geocode({latLng: latLng_now}, function(results, status){
+//    if(status == google.maps.GeocoderStatus.OK){
+//    document.getElementById("area_name").innerHTML = results[0].formatted_address+'付近にいます';
+//    }
+//    else {
+//    // エラーの場合
+//    }
+//   });
+//  }
 
- // 情報ウィンドウを表示する,クリックで表示
- // but that message is not within the marker's instance data.
- function attachSecretMessage(marker, number, map, area) {
-  //インフォウィンドウの作成
-  // var infowindow = new google.maps.InfoWindow({
-  //   content: area['ja'] + "<br/>" +
-  //    "<a href='/map/lists?area=" + area.ja +
-  //     "&amp;lat=" + myLocation.lat + "&amp;lng=" + myLocation.lng + "'>この付近をもっと詳しく</a>",
-  //    //size: new google.maps.Size(50,50)
-  // });
+//  function make_marker(map) {
+//   for (var i = 0; i < areas.length; i++) {
+//    //マーカーを作成
+//    var marker = new google.maps.Marker({
+//        position : new google.maps.LatLng(areas[i].latitude, areas[i].longitude),
+//        icon: destinationMarker,
+//        map: map,
+//       });
+//    var j = i + 1;
+//    marker.setTitle(j.toString());
+//    gmarkers[i] = marker;
+//    attachSecretMessage(marker, i, map, areas[i]);
+//   }
+//  }
 
-  // 新しい情報ウィンドウを開いた時、すでに開かれているウィンドウを閉じる
-  google.maps.event.addListener(marker, 'click', function() {
-    if (currentInfoWindow) {
-      currentInfoWindow.close();
-    }
-    infowindow.setContent( area['ja'] + "<br/>" +
-      "<a href='/map/lists?area=" + area.ja +
-       "&amp;lat=" + myLocation.lat + "&amp;lng=" + myLocation.lng + "'>この付近をもっと詳しく</a>");
-    infowindow.open(map,marker);
-    currentInfoWindow = infowindow;
-  });
- }
+//  // 情報ウィンドウを表示する,クリックで表示
+//  // but that message is not within the marker's instance data.
+//  function attachSecretMessage(marker, number, map, area) {
+//   //インフォウィンドウの作成
+//   // var infowindow = new google.maps.InfoWindow({
+//   //   content: area['ja'] + "<br/>" +
+//   //    "<a href='/map/lists?area=" + area.ja +
+//   //     "&amp;lat=" + myLocation.lat + "&amp;lng=" + myLocation.lng + "'>この付近をもっと詳しく</a>",
+//   //    //size: new google.maps.Size(50,50)
+//   // });
 
- function list_click(i) {
-    google.maps.event.trigger(gmarkers[i], "click");
-}
+//   // 新しい情報ウィンドウを開いた時、すでに開かれているウィンドウを閉じる
+//   google.maps.event.addListener(marker, 'click', function() {
+//     if (currentInfoWindow) {
+//       currentInfoWindow.close();
+//     }
+//     infowindow.setContent( area['ja'] + "<br/>" +
+//       "<a href='/map/lists?area=" + area.ja +
+//        "&amp;lat=" + myLocation.lat + "&amp;lng=" + myLocation.lng + "'>この付近をもっと詳しく</a>");
+//     infowindow.open(map,marker);
+//     currentInfoWindow = infowindow;
+//   });
+//  }
+
+//  function list_click(i) {
+//     google.maps.event.trigger(gmarkers[i], "click");
+// }
 </script>

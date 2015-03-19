@@ -3,8 +3,6 @@ class MapController < ApplicationController
     @lat = params[:lat]
     @lng = params[:lon]
 
-    @lat = "39.680156" #現在位置の緯度
-    @lng = "141.133767" #現在位置の経度
     gon.lat = @lat
     gon.lng = @lng
 
@@ -12,11 +10,11 @@ class MapController < ApplicationController
     @albums = Album.all
     gon.areas = @areas
     gon.albums = @albums
-    @hash = Gmaps4rails.build_markers(@areas) do |area, marker|
-      marker.lat area.latitude
-      marker.lng area.longitude
-#      marker.infowindow album.description
-      marker.json({title: area.area})
+    @hash = Gmaps4rails.build_markers(@albums) do |album, marker|
+      marker.lat album.latitude
+      marker.lng album.longitude
+      marker.infowindow album.description
+      marker.json({title: album.title})
     end
   end
 
