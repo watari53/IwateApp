@@ -154,6 +154,8 @@ File.open("IwateSpotsListFqID.dat", 'a') {|file|
         line = line + "+" + element.to_s
       end
     end
-    file.write(line + "\n")
+    if line.include?("すべての基本情報を見る") == false
+      file.write(line + "\n")
+    end
   end
 }

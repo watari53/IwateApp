@@ -193,7 +193,6 @@ DEPENDENCIES
   pit
   rails (= 4.1.8)
   rekognize
-  rest-client
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   sinatra

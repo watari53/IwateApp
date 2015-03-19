@@ -19,68 +19,27 @@ address = elements[3]
 detail = elements[4]
 result = client.location_search(value)
 output = ""
+
 result.each{|k, v|
   k.each{ |kk,vv|
         if kk == "latitude"
-          output = value + "," + vv.to_s
+          output = value + "+" + vv.to_s
         end
         if kk == "id"
-          output = output + "," + vv
+          output = output + "+" + vv
         end
         if kk == "longitude"
-          output = output + "," + vv.to_s
+          output = output + "+" + vv.to_s
         end
         if kk == "name"
-          output = output + "," + vv
+          output = output + "+" + vv
         end
-      }
-   }
+  }
+}
 
 if output != ""
-  puts output
+  output = output + "+" + ARGV[0]
+  File.open("IwateSpotsListWithInstaID.dat", 'a') {|file|
+    file.write(output + "\n")
+  }
 end
-
-=begin
-open("YokohamaSpotsListID1.csv") do |file|
-  while l = file.gets
-    result = client.location_search(l.to_s)
-    puts result
-    puts l
-    result.each{|k, v|
-      k.each{ |kk,vv|
-        if kk == "id"
-          puts kk + "," + vv
-        end
-      }
-   }
-  end
-end
-
-
-=begin
-open("YokohamaSpotsListIDworking.csv") do |file|
-  while l = file.gets
-    result = client.location_search("#{l}")
-    if result == []
-      puts "no-" + l
-    else
-      puts l
-    end
-  end
-end
-
-=begin
-open("YokohamaSpotsListID.csv") do |file|
-  while l = file.gets
-    begin
-      timeout(3) {
-        result = client.location_search(l)
-      }
-    rescue Timeout::Error => e
-      puts "no" + l
-    rescue => e
-      puts l
-    end
-  end
-end
-=end
