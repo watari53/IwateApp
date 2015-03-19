@@ -72,10 +72,12 @@ venues_ids = []
 venues_id_name = []
 
 jaranSpots = []
+spotsInformation = {}
+
 
 open("IwateSpotsListWithLatLon.dat") do |file|
   while l = file.gets
-    array = l.chop.split(",")
+    array = l.chop.split("+")
     lat = array[4]
     lon = array[5]
     spot = array[0]
@@ -89,11 +91,11 @@ open("IwateSpotsListWithLatLon.dat") do |file|
 end
 
 
-open("IwateSpotsListWithLatLon.csv") do |file|
+open("IwateSpotsListWithLatLon.dat") do |file|
   while l = file.gets
-    array = l.chop.split(",")
-    lat = array[4]
-    lon = array[5]
+    array = l.chop.split("+")
+    lat = array[4].to_f
+    lon = array[5].to_f
     spot = array[0]
     post = array[1]
     address = array[2]
@@ -127,6 +129,12 @@ open("IwateSpotsListWithLatLon.csv") do |file|
       if tmp.size == 2
         if venues_ids.include?(tmp[0]) == false
           venues_ids << tmp[0]
+          tmp_infor = []
+          tmp_infor << spot
+          tmp_infor << post
+          tmp_infor << address
+          tmp_infor << detail
+          spotsInformation[tmp[0]] = tmp_infor
         end
       end
     }
@@ -138,8 +146,14 @@ open("IwateSpotsListWithLatLon.csv") do |file|
 end
 
 
-File.open("IwateSpotsListID.csv", 'a') {|file|
+File.open("IwateSpotsListFqID.dat", 'a') {|file|
   venues_ids.each do |id|
-    file.write(id + "\n")
+    line = id
+    if spotsInformation.has_key?(id) == true
+      spotsInformation[id].each do |element|
+        line = line + "+" + element.to_s
+      end
+    end
+    file.write(line + "\n")
   end
 }

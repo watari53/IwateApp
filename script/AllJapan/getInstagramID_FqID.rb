@@ -11,7 +11,12 @@ client = Instagram::Client.new(format: 'json',client_id: cid,client_secret: csec
 clientF = Foursquare2::Client.new(:client_id => 'HLAML1ZW2THM4HFB5FDRJJGMRVEJYHTRPWTJ55HXSGYCGLKU', :client_secret => 'YTAL1SQ2X53P3EW41ASLL21L2OK3WLWWN4Z3EOKNIQVIM4L1')
 
 value = "4b297be1f964a520ad9f24e3"
-value = ARGV[0]
+elements = ARGV[0].split("+")
+value = elements[0]
+spot  = elements[1]
+post  = elements[2]
+address = elements[3]
+detail = elements[4]
 result = client.location_search(value)
 output = ""
 result.each{|k, v|
