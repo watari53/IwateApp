@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307113746) do
+ActiveRecord::Schema.define(version: 20150319142211) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150307113746) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "score"
+    t.integer  "album_id"
   end
 
   create_table "tagcounts", force: true do |t|
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150307113746) do
     t.datetime "updated_at"
     t.integer  "picture_id"
     t.string   "text"
+    t.integer  "album_id"
   end
 
 end
